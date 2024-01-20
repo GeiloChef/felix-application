@@ -14,7 +14,7 @@ import { i18n } from '@/i18n/config';
 
 const app = createApp(App);
 
-// eslint-disable-next-line vue/no-reserved-component-names
+// eslint-disable-next-line vue/no-reserved-component-names,vue/multi-word-component-names
 app.component('Button', Button);
 app.component('InputText', InputText);
 

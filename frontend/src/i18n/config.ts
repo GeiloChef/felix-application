@@ -1,9 +1,10 @@
 import { createI18n } from 'vue-i18n';
 
-import { Languages } from '../models/core';
 
 import deutsch from './de.json';
 import english from './en.json';
+
+import { Languages } from '@/models/core';
 
 const messages = {
   en: english,
