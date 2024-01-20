@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="text-green-500">
-      app vue
+      {{ $t('test') }}
     </span>
     <Button
       label="Success"
@@ -16,4 +16,5 @@
 
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
+
 </script>
