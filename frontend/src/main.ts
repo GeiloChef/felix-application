@@ -7,9 +7,10 @@ import PrimeVue from 'primevue/config';
 import InputText from 'primevue/inputtext';
 import { createApp } from 'vue';
 
-
 import App from './App.vue';
 import router from './router';
+
+import { i18n } from '@/i18n/config';
 
 const app = createApp(App);
 
@@ -18,6 +19,7 @@ app.component('Button', Button);
 app.component('InputText', InputText);
 
 app.use(PrimeVue);
+app.use(i18n);
 app.use(createPinia());
 app.use(router);
 
