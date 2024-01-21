@@ -18,3 +18,8 @@ export const Languages: LanguagesObject = {
     name: 'English'
   }
 };
+
+export enum ColoredBackgroundCardTypes {
+  Bright = 'BRIGHT',
+  Dark = 'DARK'
+}
