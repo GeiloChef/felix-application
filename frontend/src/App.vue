@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderBar />
     <span class="text-green-500">
       {{ $t('test') }}
     </span>
@@ -16,5 +17,7 @@
 
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
+
+  import HeaderBar from '@/components/HeaderBar.vue';
 
 </script>
