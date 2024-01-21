@@ -2,7 +2,7 @@
   <div>
     <!--  Card content  -->
     <div
-      class="w-full py-8 px-64 bg-gray-900"
+      class="w-full py-8 px-64"
       :class="cardColorClass">
       <slot />
     </div>
