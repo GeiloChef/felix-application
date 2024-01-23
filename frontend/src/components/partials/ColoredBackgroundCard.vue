@@ -2,12 +2,16 @@
   <div>
     <!--  Card content  -->
     <div
-      class="w-full py-8 px-64"
-      :class="cardColorClass">
+      class="w-full overflow-hidden"
+      :class="[
+        { 'px-64 py-8': !noMargin },
+        cardColorClass
+      ]">
       <slot />
     </div>
     <!--  End of card triangle  -->
     <div
+      v-if="!hideTriangle"
       class="w-full triangle"
       :class="triangleBackgroundClass"
       :style="triangleBorderStyle"/>
@@ -26,24 +30,35 @@
       type: String as PropType<ColoredBackgroundCardTypes>,
       required: true
     },
+    noMargin: {
+      type: Boolean,
+      default: false
+    },
+    hideTriangle: {
+      type: Boolean,
+      default: false
+    }
   });
 
   const { colorType } = toRefs(props);
 
+  const colorDark = 'bg-gray-900';
+  const colorLight = 'bg-blue-900';
+
   const cardColorClass = computed((): string => {
     if (colorType?.value === ColoredBackgroundCardTypes.Dark) {
-      return 'bg-gray-900';
+      return colorDark;
     }
 
-    return 'bg-blue-800';
+    return colorLight;
   });
 
   const triangleBackgroundClass = computed((): string => {
     if (colorType?.value === ColoredBackgroundCardTypes.Dark) {
-      return 'bg-blue-800';
+      return colorLight;
     }
 
-    return 'bg-gray-900';
+    return colorDark;
   });
 
   const triangleBorderStyle = computed((): string => {
@@ -51,7 +66,7 @@
       return 'border-color: rgb(17 24 39) transparent transparent transparent;';
     }
 
-    return 'border-color: rgb(30 64 175) transparent transparent transparent;';
+    return 'border-color: rgb(30 58 138) transparent transparent transparent;';
   });
 </script>
 
