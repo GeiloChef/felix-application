@@ -23,3 +23,9 @@ export enum ColoredBackgroundCardTypes {
   Bright = 'BRIGHT',
   Dark = 'DARK'
 }
+
+export enum UnitOfTimeForDifference {
+  Year = 'years',
+  Month = 'months',
+  Day = 'days'
+}
