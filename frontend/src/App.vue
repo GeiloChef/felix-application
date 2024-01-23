@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderBar />
-    <span class="text-green-500">
+    <!--    <span class="text-green-500">
       {{ $t('test') }}
     </span>
     <Button
@@ -10,7 +10,7 @@
 
     <InputText
       type="text"
-      v-model="value" />
+      v-model="value" />-->
   </div>
   <RouterView />
 </template>
@@ -18,6 +18,5 @@
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
 
-  import HeaderBar from '@/components/HeaderBar.vue';
-
+  import HeaderBar from '@/components/partials/HeaderBar.vue';
 </script>
