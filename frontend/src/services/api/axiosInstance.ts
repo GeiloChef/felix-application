@@ -9,7 +9,8 @@ const instance = axios.create({
  */
 
 instance.defaults.params = {
-    'locale': 'de'
+    'locale': 'de',
+    'populate': '*'
 };
 
 
