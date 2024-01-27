@@ -7,7 +7,7 @@ import { useUserInfoStore } from '@/stores/userInfoStore';
 export const fetchPersonalInformation = async (): Promise<PersonalInformation>  => {
   const userInfoStore = useUserInfoStore();
 
-  let publicPersonalInformation: null | PersonalInformationPublicStrapiDto = null;
+  let publicPersonalInformation: PersonalInformationPublicStrapiDto = {} as PersonalInformationPublicStrapiDto;
   const privatePersonalInformation = null;
 
   try {

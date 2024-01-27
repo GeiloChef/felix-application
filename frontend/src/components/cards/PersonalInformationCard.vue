@@ -10,7 +10,7 @@
           <img
             class="profile-image"
             v-if="personalInformation.image"
-            :src="personalInformation.image.formats.large.url"
+            :src="personalInformation.image.formats!.large.url"
             :alt="personalInformation.image.alternativeText">
         </div>
       </div>

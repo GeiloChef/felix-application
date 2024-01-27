@@ -3,23 +3,36 @@
  *
  * they will get mapped in the service file to a fitting type from the 'frontendDataModel.ts'
  */
+import { MilestoneType } from '@/models/ui-models';
 
 export interface StrapiApiResponseMeta {
   meta?: never
 }
 
+export interface DataObject<T> {
+  id: number,
+  attributes: T
+}
+
 export interface StrapiApiResponse<T> {
-  data: {
-    id: number,
-    attributes: T
-  },
+  data: DataObject<T>,
   meta: StrapiApiResponseMeta,
 }
+
+export interface StrapiArrayApiResponse<T> {
+  data: DataObject<T>[],
+  meta: StrapiApiResponseMeta,
+}
+
 export interface StrapiMediaApiResponse<T> {
-  data: {
-    id: number,
-    attributes: T
-  },
+  data: DataObject<T>,
+  localizations: {
+    data: []
+  }
+}
+
+export interface StrapiMultiMediaApiResponse<T> {
+  data: DataObject<T>[],
   localizations: {
     data: []
   }
@@ -36,7 +49,7 @@ export interface strapiMediaDto extends StrapiData {
   caption: string | null,
   width: number,
   height: number,
-  formats: strapiMediaFormats,
+  formats: StrapiMediaFormats | null,
   hash: string,
   ext: string,
   mime: string,
@@ -47,7 +60,7 @@ export interface strapiMediaDto extends StrapiData {
   provider_metadata: null
 }
 
-export interface strapiMediaFormat {
+export interface StrapiMediaFormat {
   name: string,
   hash: string,
   ext: string,
@@ -59,11 +72,11 @@ export interface strapiMediaFormat {
   url: string
 }
 
-export interface strapiMediaFormats {
-  thumbnail: strapiMediaFormat,
-  medium: strapiMediaFormat,
-  large: strapiMediaFormat,
-  small: strapiMediaFormat
+export interface StrapiMediaFormats {
+  thumbnail: StrapiMediaFormat,
+  medium: StrapiMediaFormat,
+  large: StrapiMediaFormat,
+  small: StrapiMediaFormat
 }
 
 export interface PersonalInformationPublicStrapiDto extends StrapiData {
@@ -84,4 +97,14 @@ export interface PersonalInformationPrivateStrapiDto extends StrapiData {
   location: string,
   mailAddress: string,
   phone: string,
+}
+
+export interface MilestoneStrapiDto extends StrapiData {
+  title: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+  locale: string,
+  type: MilestoneType,
+  attachments:  StrapiMultiMediaApiResponse<strapiMediaDto> | null
 }
