@@ -9,6 +9,7 @@ import { DateFormats, UnitOfTimeForDifference } from '@/models/core';
  * calculate the difference (e.x. Years, Months or Days)
  * @param date {Moment}
  * @param unitOfTime {UnitOfTimeForDifference}
+ * @param today {Moment} - should not be set and is used for testing purposes only
  * @example
  * const sampleDate = moment(13-05-1997);
  * calculateDifferenceBetweenDateAndToday(sampleDate, UnitOfTimeForDifference.Year)
@@ -16,9 +17,12 @@ import { DateFormats, UnitOfTimeForDifference } from '@/models/core';
  *
  * Note: if the calculated difference is not a number, 0 will be returned
  */
-export const calculateDifferenceBetweenDateAndToday = (date: moment.Moment, unitOfTime: UnitOfTimeForDifference) => {
-  const today = moment();
-  const difference = today.diff(date, unitOfTime);
+export const calculateDifferenceBetweenDateAndToday = (date: moment.Moment, unitOfTime: UnitOfTimeForDifference, today: moment.Moment = moment()) => {
+  if (!date || typeof date === 'number'  || typeof date === 'string' || typeof date === 'boolean') return 0;
+
+  let difference = today.diff(date, unitOfTime);
+
+  difference = (difference < 0) ? difference * -1 : difference;
 
   return isNaN(difference) ? 0 : difference;
 };
