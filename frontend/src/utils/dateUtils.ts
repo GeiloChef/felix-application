@@ -1,8 +1,21 @@
-import moment from 'moment';
+import moment, { type Moment } from 'moment';
+import 'moment/dist/locale/de';
 import { useI18n } from 'vue-i18n';
 
-import { UnitOfTimeForDifference } from '@/models/core';
+import { DateFormats, UnitOfTimeForDifference } from '@/models/core';
 
+/**
+ * @description calculates the difference between a given date and today. You can specify a unit of time that will be used to
+ * calculate the difference (e.x. Years, Months or Days)
+ * @param date {Moment}
+ * @param unitOfTime {UnitOfTimeForDifference}
+ * @example
+ * const sampleDate = moment(13-05-1997);
+ * calculateDifferenceBetweenDateAndToday(sampleDate, UnitOfTimeForDifference.Year)
+ * // -> return the years between 13-05-1997 and today || e.x. 26
+ *
+ * Note: if the calculated difference is not a number, 0 will be returned
+ */
 export const calculateDifferenceBetweenDateAndToday = (date: moment.Moment, unitOfTime: UnitOfTimeForDifference) => {
   const today = moment();
   const difference = today.diff(date, unitOfTime);
@@ -10,6 +23,10 @@ export const calculateDifferenceBetweenDateAndToday = (date: moment.Moment, unit
   return isNaN(difference) ? 0 : difference;
 };
 
+/**
+ * @description Returns the translated value for a number to display small numbers as translated strings. Numbers above 12 will just be returned as string
+ * @param number - only works with numbers from 1-12
+ */
 export const getTranslatedNumber = (number: number): string => {
   const { t } = useI18n();
 
@@ -43,4 +60,16 @@ export const getTranslatedNumber = (number: number): string => {
     default:
       return number.toString();
   }
+};
+
+/**
+ * @description Takes a moment date object and outputs a formatted date depending on the locale selected by the user
+ * @param date {Moment} - moment date object
+ * @param format {DateFormats} - default: DD MM YYYY
+ * @returns datestring {string} - formatted date string like: 13.05.1997
+ */
+export const formatDateForUi = (date: Moment, format: DateFormats = DateFormats.DayMonthYearShort) => {
+  moment.locale('de');
+
+  return date.format(format);
 };
