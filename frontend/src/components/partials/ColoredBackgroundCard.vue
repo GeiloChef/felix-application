@@ -4,9 +4,14 @@
     <div
       class="w-full overflow-hidden"
       :class="[
-        { 'px-64 py-8': !noMargin },
+        { 'px-64 py-24': !noMargin },
         cardColorClass
       ]">
+      <div
+        v-if="title"
+        class="text-center text-3xl font-bold italic">
+        {{ title }}
+      </div>
       <slot />
     </div>
     <!--  End of card triangle  -->
@@ -29,6 +34,10 @@
     colorType: {
       type: String as PropType<ColoredBackgroundCardTypes>,
       required: true
+    },
+    title: {
+      type: String,
+      default: ''
     },
     noMargin: {
       type: Boolean,

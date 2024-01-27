@@ -29,3 +29,14 @@ export enum UnitOfTimeForDifference {
   Month = 'months',
   Day = 'days'
 }
+
+export enum DateFormats {
+  MonthYear = 'MMMM YYYY',
+  DayMonthYearShort = 'DD.MM.YYYY',
+  DayMonthYearLong = 'DD. MMMM YYYY',
+}
+
+export enum ButtonIconPosition {
+  Left = 'left',
+  Right = 'right'
+}

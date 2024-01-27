@@ -7,7 +7,11 @@ import {
   faCalendarDays,
   faLaptopCode,
   faBusinessTime,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faPaperclip,
+  faFileDownload,
+  faEye,
+  faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -18,4 +22,8 @@ library.add(
   faBusinessTime,
   faVuejs,
   faMagnifyingGlass,
+  faPaperclip,
+  faFileDownload,
+  faEye,
+  faSpinner
 );

@@ -3,6 +3,13 @@
   "start-a-tour": "Tour starten!",
   "years-old": "{count} Jahre alt",
   "professional-experience": "{count} Jahr Berufserfahrung | {count} Jahre Berufserfahrung",
+  "my-milestones": "Meine Milestones",
+  "download": "herunterladen",
+  "preview": "Vorschau",
+  "attachment": "Anhang | Anhänge",
+  "attachment-with-number": "{count} Anhang | {count} Anhänge",
+  "action": "Aktion | Aktionen",
+  "you-need-to-be-logged-in-to-download-or-view-attachments": "Gästen steht die Ansicht und der Download von Anhängen nicht zur Verfügung.",
   "numbers": {
     "zero": "Null",
     "one": "eins",
