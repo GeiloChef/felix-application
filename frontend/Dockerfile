@@ -6,7 +6,7 @@ RUN npm install --non-interactive
 
 COPY . .
 
-RUN npm build-only --force
+RUN npm run build-only --force
 
 FROM sebp/lighttpd
 
