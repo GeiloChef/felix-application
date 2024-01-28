@@ -10,6 +10,9 @@
   "attachment-with-number": "{count} Anhang | {count} Anhänge",
   "action": "Aktion | Aktionen",
   "you-need-to-be-logged-in-to-download-or-view-attachments": "Gästen steht die Ansicht und der Download von Anhängen nicht zur Verfügung.",
+  "my-tech-stack": "Mein Tech-Stack",
+  "coding": "programmieren",
+  "design": "Design",
   "numbers": {
     "zero": "Null",
     "one": "eins",

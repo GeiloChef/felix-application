@@ -1,10 +1,8 @@
 <template>
   <main>
-    <PersonalInformationCard/>
-    <CVTimelineCard/>
-    <ColoredBackgroundCard :color-type="ColoredBackgroundCardTypes.Bright">
-      bright
-    </ColoredBackgroundCard>
+    <PersonalInformationCard />
+    <CVTimelineCard />
+    <TechStackCard />
     <ColoredBackgroundCard :color-type="ColoredBackgroundCardTypes.Dark">
       dark
     </ColoredBackgroundCard>
@@ -18,6 +16,7 @@
 
   import CVTimelineCard from '@/components/cards/CVTimelineCard.vue';
   import PersonalInformationCard from '@/components/cards/PersonalInformationCard.vue';
+  import TechStackCard from '@/components/cards/TechStackCard.vue';
   import ColoredBackgroundCard from '@/components/partials/ColoredBackgroundCard.vue';
   import { ColoredBackgroundCardTypes } from '@/models/core';
   import { useDataStore } from '@/stores/dataStore';
