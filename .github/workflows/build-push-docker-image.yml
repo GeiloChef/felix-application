@@ -1,26 +1,21 @@
-name: Docker Image CI
+name: Build Docker Images
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: workflow_dispatch
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: Build and publish the Docker image
+    - name: Build and publish frontend Docker image
       uses: docker/build-push-action@v5
       with:
-          context: .
-          file: ./Dockerfile
+          context: ./frontend
+          file: ./frontend/Dockerfile
           push: true
-          tags: ${{ github.sha }}
+          tags:
+            - ${{ github.repository }}:${{ github.sha }}
+            - ${{ github.repository }}:latest
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
