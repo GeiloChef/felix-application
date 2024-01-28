@@ -17,7 +17,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5.5.0
       with:
-        images: geilo-chef/felix-application
+        images: ${{ github.repository }}
     - name: Build and publish frontend Docker image
       uses: docker/build-push-action@v5
       with:
