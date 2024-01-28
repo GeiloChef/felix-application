@@ -5,9 +5,16 @@ import type {
   DataObject,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
-  PersonalInformationPublicStrapiDto, strapiMediaDto, StrapiMediaFormats,
+  PersonalInformationPublicStrapiDto, StrapiMediaDto, StrapiMediaFormats, TechStackStrapiDto,
 } from '@/models/typesFromStrapiApi';
-import { HiddenDefaultValue, type MediaObject, type Milestone, type PersonalInformation } from '@/models/ui-models';
+import {
+  HiddenDefaultValue,
+  type MediaObject,
+  type Milestone,
+  type PersonalInformation,
+  TechStackCategory,
+  type TechStackEntry
+} from '@/models/ui-models';
 import { createLinkToDocumentOnToApi } from '@/utils/coreUtils';
 import { calculateDifferenceBetweenDateAndToday } from '@/utils/dateUtils';
 
@@ -31,7 +38,7 @@ export const mapPersonalInformationToFrontendObject = (publicPersonalInformation
   };
 };
 
-export const mapStrapiMediaToFrontendObject = (mediaObject: strapiMediaDto): MediaObject => {
+export const mapStrapiMediaToFrontendObject = (mediaObject: StrapiMediaDto): MediaObject => {
 
   if (mediaObject.formats) {
     mediaObject.formats.thumbnail.url = createLinkToDocumentOnToApi(mediaObject.formats.thumbnail.url);
@@ -86,4 +93,25 @@ export const mapMilestonesToFrontendObject = (milestonesFromStrapi:  DataObject<
 
 
   return milestones;
+};
+
+export const mapTechStackToFrontendObject = (techStackFromStrapi: DataObject<TechStackStrapiDto>[]): TechStackEntry[] => {
+  const techStack: TechStackEntry[] = [];
+
+  techStackFromStrapi.map((techStackEntryFromStrapi) => {
+    const mappedImage = mapStrapiMediaToFrontendObject(techStackEntryFromStrapi.attributes.image.data.attributes);
+
+    const mappedTechStackEntry: TechStackEntry = {
+      orderNumber: techStackEntryFromStrapi.attributes.orderNumber,
+      name: techStackEntryFromStrapi.attributes.name,
+      category: techStackEntryFromStrapi.attributes.category,
+      skillRating: techStackEntryFromStrapi.attributes.skillRating,
+      local: techStackEntryFromStrapi.attributes.local,
+      image: mappedImage
+    };
+
+    techStack.push(mappedTechStackEntry);
+  });
+
+  return techStack;
 };

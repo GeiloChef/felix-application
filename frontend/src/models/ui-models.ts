@@ -2,7 +2,7 @@ import moment, { type Moment } from 'moment';
 
 import type {
   StrapiMediaApiResponse,
-  strapiMediaDto,
+  StrapiMediaDto,
   StrapiMediaFormats,
   StrapiMultiMediaApiResponse
 } from '@/models/typesFromStrapiApi';
@@ -33,6 +33,11 @@ export enum MilestoneType {
   WorkingExperience = 'WORKING_EXPERIENCE'
 }
 
+export enum TechStackCategory {
+  Coding = 'CODING',
+  Design = 'Design',
+}
+
 export interface MediaObject {
   name: string,
   alternativeText: string,
@@ -57,3 +62,13 @@ export interface Milestone {
   type: MilestoneType,
   attachments:  MediaObject[]
 }
+
+export interface TechStackEntry {
+  orderNumber: number,
+  name: string,
+  category: TechStackCategory,
+  skillRating: number,
+  local: string,
+  image: MediaObject
+}
+
