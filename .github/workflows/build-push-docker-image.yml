@@ -2,8 +2,7 @@ name: Build Docker Images
 
 on: workflow_dispatch
 
-permissions:
-  packages: write
+permissions: write-all
 
 jobs:
   build:
