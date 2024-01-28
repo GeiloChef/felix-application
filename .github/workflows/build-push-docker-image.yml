@@ -13,9 +13,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags:
-            - ${{ github.repository }}:${{ github.sha }}
-            - ${{ github.repository }}:latest
+          tags: ["${{ github.repository }}:${{ github.sha }}", "${{ github.repository }}:latest"]
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
