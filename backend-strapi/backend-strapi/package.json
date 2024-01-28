@@ -7,7 +7,9 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "export-no-enc": "npm run strapi export -- --file ./exports/exported-data --no-encrypt",
+    "import-no-enc": "strapi import -- --file ./exports/exported-data.tar.gz"
   },
   "devDependencies": {},
   "dependencies": {

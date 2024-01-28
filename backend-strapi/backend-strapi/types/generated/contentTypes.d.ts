@@ -853,6 +853,7 @@ export interface ApiMyTechstackEntryMyTechstackEntry
     singularName: 'my-techstack-entry';
     pluralName: 'my-techstack';
     displayName: 'Techstack';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -874,7 +875,7 @@ export interface ApiMyTechstackEntryMyTechstackEntry
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     category: Attribute.Enumeration<['CODING', 'DESIGN']> &
@@ -1083,52 +1084,6 @@ export interface ApiPersonalInformationPrivatePersonalInformationPrivate
   };
 }
 
-export interface ApiTestCollectionTestCollection extends Schema.CollectionType {
-  collectionName: 'test_collections';
-  info: {
-    singularName: 'test-collection';
-    pluralName: 'test-collections';
-    displayName: 'test-collection';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    text: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::test-collection.test-collection',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::test-collection.test-collection',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::test-collection.test-collection',
-      'oneToMany',
-      'api::test-collection.test-collection'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1151,7 +1106,6 @@ declare module '@strapi/types' {
       'api::my-techstack-entry.my-techstack-entry': ApiMyTechstackEntryMyTechstackEntry;
       'api::personal-information.personal-information': ApiPersonalInformationPersonalInformation;
       'api::personal-information-private.personal-information-private': ApiPersonalInformationPrivatePersonalInformationPrivate;
-      'api::test-collection.test-collection': ApiTestCollectionTestCollection;
     }
   }
 }
