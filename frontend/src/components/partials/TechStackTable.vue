@@ -13,7 +13,7 @@
         :rows="maxEntriesPerPage">
         <Column
           field="name"
-          header="Name"
+          :header="$t('name')"
           sortable>
           <template #body="slotProps">
             <div class="flex flex-row gap-4 items-center">
@@ -31,7 +31,7 @@
         </Column>
         <Column
           field="catagory"
-          header="Category">
+          :header="$t('category')">
           <template #body="slotProps">
             <span>
               {{ getTranslatedTechStackCategory(slotProps.data.category) }}
@@ -40,7 +40,7 @@
         </Column>
         <Column
           field="skillRating"
-          header="Skill Rating"
+          :header="$t('skill-rating')"
           sortable>
           <template #body="slotProps">
             <Rating

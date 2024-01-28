@@ -13,6 +13,9 @@
   "my-tech-stack": "Mein Tech-Stack",
   "coding": "programmieren",
   "design": "Design",
+  "name": "Name",
+  "category": "Kategorie",
+  "skill-rating": "Skill-Bewertung",
   "numbers": {
     "zero": "Null",
     "one": "eins",
