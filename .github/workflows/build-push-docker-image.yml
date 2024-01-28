@@ -14,12 +14,12 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.PAT }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Extract metadata (tags, labels) for Docker
       id: meta
       uses: docker/metadata-action@v5.5.0
       with:
-        images: ${{ github.repository }}
+        images: ghcr.io/${{ github.repository }}
     - name: Build and publish frontend Docker image
       uses: docker/build-push-action@v5
       with:
