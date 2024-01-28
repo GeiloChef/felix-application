@@ -30,6 +30,6 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         key: ${{ secrets.SSHKEY }}
         script: |
-              cd ${{secrets.FONTEND_TARGET}} && npm install
-              printf "%s" "${{secrets.ENVIRONMENT_ENV}}" > "${{secrets.FONTEND_TARGET}}/.env.production"
+              cd ${{secrets.FRONTEND_TARGET}} && npm install
+              printf "%s" "${{secrets.ENVIRONMENT_ENV}}" > "${{secrets.FRONTEND_TARGET}}/.env.production"
               npm run build
