@@ -2,6 +2,9 @@ name: Build Docker Images
 
 on: workflow_dispatch
 
+permissions:
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5.5.0
       with:
-        images: ${{ github.repository_owner }}/frontend
+        images: ${{ github.repository }}/frontend
     - name: Build and publish frontend Docker image
       uses: docker/build-push-action@v5
       with:
