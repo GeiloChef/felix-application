@@ -32,4 +32,4 @@ jobs:
         script: |
               cd ${{secrets.FRONTEND_TARGET}} && npm install
               printf "%s" "${{secrets.ENVIRONMENT_ENV}}" > "${{secrets.FRONTEND_TARGET}}/.env.production"
-              npm run build --force
+              npm run build-only --force
