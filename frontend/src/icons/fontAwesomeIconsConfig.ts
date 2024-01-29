@@ -11,7 +11,8 @@ import {
   faPaperclip,
   faFileDownload,
   faEye,
-  faSpinner
+  faSpinner,
+  faLink,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -25,5 +26,6 @@ library.add(
   faPaperclip,
   faFileDownload,
   faEye,
-  faSpinner
+  faSpinner,
+  faLink,
 );

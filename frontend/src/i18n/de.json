@@ -16,6 +16,10 @@
   "name": "Name",
   "category": "Kategorie",
   "skill-rating": "Skill-Bewertung",
+  "my-references": "Meine Referenzen",
+  "coding-experience": "Programmiererfahrung",
+  "working-experience": "Berufserfahrung",
+  "education": "Weiterbildung",
   "numbers": {
     "zero": "Null",
     "one": "eins",

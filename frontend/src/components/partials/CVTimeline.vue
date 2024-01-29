@@ -81,7 +81,7 @@
     }
   };
 
-  const openAttachmentOverlay = (event: PointerEvent, attachments: MediaObject[]) => {
+  const openAttachmentOverlay = (event: PointerEvent | MouseEvent, attachments: MediaObject[]) => {
     if (AttachmentOverlayRef.value) {
       attachmentOverlayStore.setCurrentViewedAttachments(attachments);
       AttachmentOverlayRef.value.toggle(event);
