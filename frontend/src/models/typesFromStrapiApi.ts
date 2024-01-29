@@ -89,6 +89,8 @@ export interface PersonalInformationPublicStrapiDto extends StrapiData {
   lookingFor: string | null,
   currentJob: string | null,
   currentEmployer: string | null,
+  githubProfile: StrapiMediaApiResponse<ExternalLinkDto> | null,
+  linkedInProfile: StrapiMediaApiResponse<ExternalLinkDto> | null,
   image: StrapiMediaApiResponse<StrapiMediaDto>
 }
 

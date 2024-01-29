@@ -1,6 +1,8 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faVuejs,
+  faLinkedin,
+  faGithub,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faUserSecret,
@@ -28,4 +30,6 @@ library.add(
   faEye,
   faSpinner,
   faLink,
+  faLinkedin,
+  faGithub,
 );

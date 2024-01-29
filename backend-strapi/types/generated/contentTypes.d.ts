@@ -1033,6 +1033,16 @@ export interface ApiPersonalInformationPersonalInformation
           localized: true;
         };
       }>;
+    githubProfile: Attribute.Relation<
+      'api::personal-information.personal-information',
+      'oneToOne',
+      'api::external-link.external-link'
+    >;
+    linkedInProfile: Attribute.Relation<
+      'api::personal-information.personal-information',
+      'oneToOne',
+      'api::external-link.external-link'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

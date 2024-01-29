@@ -12,3 +12,11 @@ export const createLinkToDocumentOnToApi = (route: string) => {
 
   return apiUrl + route;
 };
+
+/**
+ * @description Opens a link in a new browser tab
+ * @param url {string}
+ */
+export const openLinkInNewTab = (url: string): void => {
+  window.open(url, '_blank', 'noreferrer');
+};

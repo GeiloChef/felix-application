@@ -64,6 +64,7 @@
   import { type MediaObject, ReferenceType } from '@/models/ui-models';
   import { useAttachmentOverlayStore } from '@/stores/attachmentOverlayStore';
   import { useDataStore } from '@/stores/dataStore';
+  import { openLinkInNewTab } from '@/utils/coreUtils';
 
   const { t } = useI18n();
 
@@ -79,10 +80,6 @@
       attachmentOverlayStore.setCurrentViewedAttachments(attachments);
       AttachmentOverlayRef.value.toggle(event);
     }
-  };
-
-  const openLinkInNewTab = (url: string) => {
-    window.open(url, '_blank', 'noreferrer');
   };
 
   const translatedValueForReferenceType = (type: ReferenceType): string => {

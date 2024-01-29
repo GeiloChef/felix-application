@@ -81,7 +81,7 @@
 
   const introductionText = computed((): string => {
     const ageMarker = '__age__';
-    const professionalExperienceYearsMarker = '__professionalExperienceYears__ ';
+    const professionalExperienceYearsMarker = '__professionalExperienceYears__';
 
 
     if (personalInformation.value.introductionText) {

@@ -25,6 +25,8 @@ export interface PersonalInformation {
   lookingFor: string | null,
   currentJob: string | null,
   currentEmployer: string | null,
+  githubProfile: ExternalLink | '',
+  linkedInProfile: ExternalLink | '',
 }
 
 export enum MilestoneType {

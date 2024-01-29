@@ -21,6 +21,10 @@ import { calculateDifferenceBetweenDateAndToday } from '@/utils/dateUtils';
 
 export const mapPersonalInformationToFrontendObject = (publicPersonalInformation: PersonalInformationPublicStrapiDto,
                                                        privatePersonalInformation: null | PersonalInformationPrivateStrapiDto): PersonalInformation => {
+
+  const githubLink = publicPersonalInformation.githubProfile ? mapExternalLinkToFrontendObject(publicPersonalInformation.githubProfile.data.attributes) : '';
+  const linkedInLink = publicPersonalInformation.linkedInProfile ? mapExternalLinkToFrontendObject(publicPersonalInformation.linkedInProfile.data.attributes) : '';
+
   return {
     firstname: publicPersonalInformation.firstname,
     lastname: publicPersonalInformation.lastname,
@@ -36,6 +40,8 @@ export const mapPersonalInformationToFrontendObject = (publicPersonalInformation
     lookingFor: publicPersonalInformation.lookingFor,
     currentJob: publicPersonalInformation.currentJob,
     currentEmployer: publicPersonalInformation.currentEmployer,
+    githubProfile: githubLink,
+    linkedInProfile: linkedInLink,
   };
 };
 
