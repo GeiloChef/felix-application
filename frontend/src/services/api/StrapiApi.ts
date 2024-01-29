@@ -1,6 +1,7 @@
 import type { AxiosPromise } from 'axios';
 
 import type {
+    FeatureTogglesDto,
     MilestoneStrapiDto,
     PersonalInformationPublicStrapiDto, ReferencesStrapiDto,
     StrapiApiResponse, StrapiArrayApiResponse, TechStackStrapiDto
@@ -20,4 +21,8 @@ export const fetchTechStackFromStrapi = async (): AxiosPromise<StrapiArrayApiRes
 
 export const fetchReferencesFromStrapi = async (): AxiosPromise<StrapiArrayApiResponse<ReferencesStrapiDto>> => {
     return await axios.get('/references');
+};
+
+export const fetchFeatureTogglesFromStrapi = async (): AxiosPromise<StrapiArrayApiResponse<FeatureTogglesDto>> => {
+    return await axios.get('/feature-toggles');
 };

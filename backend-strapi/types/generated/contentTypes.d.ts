@@ -799,6 +799,37 @@ export interface ApiExternalLinkExternalLink extends Schema.CollectionType {
   };
 }
 
+export interface ApiFeatureToggleFeatureToggle extends Schema.CollectionType {
+  collectionName: 'feature_toggles';
+  info: {
+    singularName: 'feature-toggle';
+    pluralName: 'feature-toggles';
+    displayName: 'Feature Toggle';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::feature-toggle.feature-toggle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::feature-toggle.feature-toggle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMilestoneMilestone extends Schema.CollectionType {
   collectionName: 'milestones';
   info: {
@@ -1221,6 +1252,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::external-link.external-link': ApiExternalLinkExternalLink;
+      'api::feature-toggle.feature-toggle': ApiFeatureToggleFeatureToggle;
       'api::milestone.milestone': ApiMilestoneMilestone;
       'api::my-techstack-entry.my-techstack-entry': ApiMyTechstackEntryMyTechstackEntry;
       'api::personal-information.personal-information': ApiPersonalInformationPersonalInformation;

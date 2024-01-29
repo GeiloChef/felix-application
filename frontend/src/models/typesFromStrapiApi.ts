@@ -136,3 +136,13 @@ export interface ReferencesStrapiDto extends StrapiData {
   locale: string,
   attachments: StrapiMultiMediaApiResponse<StrapiMediaDto> | null
 }
+
+export interface FeatureTogglesDto extends StrapiData {
+  name: string;
+  active: boolean
+}
+
+export interface FeatureTogglesDto extends StrapiData {
+  name: string;
+  active: boolean
+}

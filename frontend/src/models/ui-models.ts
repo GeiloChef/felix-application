@@ -95,3 +95,13 @@ export interface Reference {
   attachments: MediaObject[]
 }
 
+export interface FeatureToggle {
+  name: string,
+  active: boolean
+}
+
+export interface FeatureToggle {
+  name: string,
+  active: boolean
+}
+

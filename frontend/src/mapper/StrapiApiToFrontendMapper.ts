@@ -2,13 +2,14 @@ import moment from 'moment';
 
 import { UnitOfTimeForDifference } from '@/models/core';
 import type {
-  DataObject, ExternalLinkDto,
+  DataObject, ExternalLinkDto, FeatureTogglesDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
   PersonalInformationPublicStrapiDto, ReferencesStrapiDto, StrapiMediaDto, StrapiMediaFormats, TechStackStrapiDto,
 } from '@/models/typesFromStrapiApi';
 import {
   type ExternalLink,
+  type FeatureToggle,
   HiddenDefaultValue,
   type MediaObject,
   type Milestone,
@@ -170,4 +171,19 @@ export const mapReferencesToFrontendObject = (referencesFromStrapi: DataObject<R
   });
 
   return references;
+};
+
+export const mapFeatureTogglesToFrontendObject = (featureTogglesFromStrapi: DataObject<FeatureTogglesDto>[]): FeatureToggle[] => {
+  const mappedFeatureToggles: FeatureToggle[] = [];
+
+  featureTogglesFromStrapi.map((featureToggleFromStrapi) => {
+    const mappedToggle: FeatureToggle = {
+      name: featureToggleFromStrapi.attributes.name,
+      active: featureToggleFromStrapi.attributes.active
+    };
+
+    mappedFeatureToggles.push(mappedToggle);
+  });
+
+  return mappedFeatureToggles;
 };
