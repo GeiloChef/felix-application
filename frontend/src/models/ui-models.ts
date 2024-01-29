@@ -38,6 +38,12 @@ export enum TechStackCategory {
   Design = 'Design',
 }
 
+export enum ReferenceType {
+  WorkingExperience = 'WORKING_EXPERIENCE',
+  CodingExperience = 'CODING_EXPERIENCE',
+  Education = 'EDUCATION'
+}
+
 export interface MediaObject {
   name: string,
   alternativeText: string,
@@ -70,5 +76,20 @@ export interface TechStackEntry {
   skillRating: number,
   local: string,
   image: MediaObject
+}
+
+export interface ExternalLink {
+  name: string,
+  description: string,
+  url: string,
+}
+
+export interface Reference {
+  name: string,
+  subHeadline: string,
+  description: string,
+  type: ReferenceType,
+  externalLinks: ExternalLink[],
+  attachments: MediaObject[]
 }
 

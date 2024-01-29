@@ -2,7 +2,7 @@ import type { AxiosPromise } from 'axios';
 
 import type {
     MilestoneStrapiDto,
-    PersonalInformationPublicStrapiDto,
+    PersonalInformationPublicStrapiDto, ReferencesStrapiDto,
     StrapiApiResponse, StrapiArrayApiResponse, TechStackStrapiDto
 } from '@/models/typesFromStrapiApi';
 import axios from '@/services/api/axiosInstance';
@@ -16,4 +16,8 @@ export const fetchMilestonesFromStrapi = async (): AxiosPromise<StrapiArrayApiRe
 
 export const fetchTechStackFromStrapi = async (): AxiosPromise<StrapiArrayApiResponse<TechStackStrapiDto>> => {
     return await axios.get('/my-techstack');
+};
+
+export const fetchReferencesFromStrapi = async (): AxiosPromise<StrapiArrayApiResponse<ReferencesStrapiDto>> => {
+    return await axios.get('/references');
 };

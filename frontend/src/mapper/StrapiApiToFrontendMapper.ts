@@ -2,17 +2,18 @@ import moment from 'moment';
 
 import { UnitOfTimeForDifference } from '@/models/core';
 import type {
-  DataObject,
+  DataObject, ExternalLinkDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
-  PersonalInformationPublicStrapiDto, StrapiMediaDto, StrapiMediaFormats, TechStackStrapiDto,
+  PersonalInformationPublicStrapiDto, ReferencesStrapiDto, StrapiMediaDto, StrapiMediaFormats, TechStackStrapiDto,
 } from '@/models/typesFromStrapiApi';
 import {
+  type ExternalLink,
   HiddenDefaultValue,
   type MediaObject,
   type Milestone,
   type PersonalInformation,
-  TechStackCategory,
+  type Reference,
   type TechStackEntry
 } from '@/models/ui-models';
 import { createLinkToDocumentOnToApi } from '@/utils/coreUtils';
@@ -106,7 +107,7 @@ export const mapTechStackToFrontendObject = (techStackFromStrapi: DataObject<Tec
       name: techStackEntryFromStrapi.attributes.name,
       category: techStackEntryFromStrapi.attributes.category,
       skillRating: techStackEntryFromStrapi.attributes.skillRating,
-      local: techStackEntryFromStrapi.attributes.local,
+      local: techStackEntryFromStrapi.attributes.locale,
       image: mappedImage
     };
 
@@ -114,4 +115,53 @@ export const mapTechStackToFrontendObject = (techStackFromStrapi: DataObject<Tec
   });
 
   return techStack;
+};
+
+export const mapExternalLinkToFrontendObject = (externalLink: ExternalLinkDto): ExternalLink => {
+  return {
+    name: externalLink.name,
+    description: externalLink.description,
+    url: externalLink.link
+  };
+};
+
+export const mapReferencesToFrontendObject = (referencesFromStrapi: DataObject<ReferencesStrapiDto>[]): Reference[] => {
+  const references: Reference[] = [];
+
+  referencesFromStrapi.map((referenceFromStrapi) => {
+    const attachments = referenceFromStrapi.attributes.attachments ?? null;
+    const mappedAttachments: MediaObject[] = [];
+
+    if (attachments && attachments.data) {
+      attachments.data.map((attachment) => {
+        const mappedAttachment = mapStrapiMediaToFrontendObject(attachment.attributes);
+
+        mappedAttachments.push(mappedAttachment);
+      });
+    }
+
+    const externalLinks = referenceFromStrapi.attributes.external_links ?? null;
+    const mappedExternalLinks: ExternalLink[] = [];
+
+    if (externalLinks && externalLinks.data) {
+      externalLinks.data.map((externalLink) => {
+        const mappedLink = mapExternalLinkToFrontendObject(externalLink.attributes);
+
+        mappedExternalLinks.push(mappedLink);
+      });
+    }
+
+    const mappedReference: Reference = {
+      name: referenceFromStrapi.attributes.name,
+      subHeadline: referenceFromStrapi.attributes.subHeadline,
+      description: referenceFromStrapi.attributes.description,
+      type: referenceFromStrapi.attributes.referenceType,
+      externalLinks: mappedExternalLinks,
+      attachments: mappedAttachments
+    };
+
+    references.push(mappedReference);
+  });
+
+  return references;
 };

@@ -3,7 +3,7 @@
  *
  * they will get mapped in the service file to a fitting type from the 'frontendDataModel.ts'
  */
-import { MilestoneType, TechStackCategory } from '@/models/ui-models';
+import { MilestoneType, ReferenceType, TechStackCategory } from '@/models/ui-models';
 
 export interface StrapiApiResponseMeta {
   meta?: never
@@ -114,6 +114,23 @@ export interface TechStackStrapiDto extends StrapiData {
   name: string,
   category: TechStackCategory,
   skillRating: number,
-  local: string,
+  locale: string,
   image: StrapiMediaApiResponse<StrapiMediaDto>
+}
+
+export interface ExternalLinkDto extends StrapiData {
+  name: string,
+  description: string,
+  link: string,
+}
+
+export interface ReferencesStrapiDto extends StrapiData {
+  name: string,
+  subHeadline: string,
+  description: string,
+  external_links: StrapiMultiMediaApiResponse<ExternalLinkDto> | null,
+  referenceType: ReferenceType,
+  skillRating: number,
+  locale: string,
+  attachments: StrapiMultiMediaApiResponse<StrapiMediaDto> | null
 }
