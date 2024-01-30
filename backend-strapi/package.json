@@ -11,13 +11,13 @@
     "export-no-enc": "npm run strapi export -- --file ./exports/exported-data --no-encrypt",
     "import-no-enc": "npm run strapi import -- --file ./exports/exported-data.tar.gz"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.17.1",
-    "@strapi/plugin-users-permissions": "4.17.1",
-    "@strapi/plugin-i18n": "4.17.1",
     "@strapi/plugin-cloud": "4.17.1",
+    "@strapi/plugin-i18n": "4.17.1",
+    "@strapi/plugin-users-permissions": "4.17.1",
+    "@strapi/strapi": "4.17.1",
     "better-sqlite3": "8.6.0",
+    "mysql": "^2.18.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
