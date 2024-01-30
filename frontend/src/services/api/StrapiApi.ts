@@ -1,7 +1,7 @@
 import type { AxiosPromise } from 'axios';
 
 import type {
-    FeatureTogglesDto,
+    FeatureTogglesDto, LocaleEntry,
     MilestoneStrapiDto,
     PersonalInformationPublicStrapiDto, ReferencesStrapiDto,
     StrapiApiResponse, StrapiArrayApiResponse, TechStackStrapiDto
@@ -25,4 +25,8 @@ export const fetchReferencesFromStrapi = async (): AxiosPromise<StrapiArrayApiRe
 
 export const fetchFeatureTogglesFromStrapi = async (): AxiosPromise<StrapiArrayApiResponse<FeatureTogglesDto>> => {
     return await axios.get('/feature-toggles');
+};
+
+export const fetchLocalesFromStrapi = async (): AxiosPromise<LocaleEntry[]> => {
+    return await axios.get('/i18n/locales');
 };

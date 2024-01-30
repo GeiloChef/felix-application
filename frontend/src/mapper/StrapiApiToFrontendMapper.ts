@@ -2,15 +2,22 @@ import moment from 'moment';
 
 import { UnitOfTimeForDifference } from '@/models/core';
 import type {
-  DataObject, ExternalLinkDto, FeatureTogglesDto,
+  DataObject,
+  ExternalLinkDto,
+  FeatureTogglesDto,
+  LocaleEntryDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
-  PersonalInformationPublicStrapiDto, ReferencesStrapiDto, StrapiMediaDto, StrapiMediaFormats, TechStackStrapiDto,
+  PersonalInformationPublicStrapiDto,
+  ReferencesStrapiDto,
+  StrapiMediaDto,
+  TechStackStrapiDto,
 } from '@/models/typesFromStrapiApi';
 import {
   type ExternalLink,
   type FeatureToggle,
   HiddenDefaultValue,
+  type LocaleEntry,
   type MediaObject,
   type Milestone,
   type PersonalInformation,
@@ -19,6 +26,11 @@ import {
 } from '@/models/ui-models';
 import { createLinkToDocumentOnToApi } from '@/utils/coreUtils';
 import { calculateDifferenceBetweenDateAndToday } from '@/utils/dateUtils';
+import {
+  convertLanguageCodeToi18nLocale,
+  convertLanguageCodeToMomentLocale,
+  getFlagCodeFromStrapiLocale
+} from '@/utils/languageUtils';
 
 export const mapPersonalInformationToFrontendObject = (publicPersonalInformation: PersonalInformationPublicStrapiDto,
                                                        privatePersonalInformation: null | PersonalInformationPrivateStrapiDto): PersonalInformation => {
@@ -186,4 +198,24 @@ export const mapFeatureTogglesToFrontendObject = (featureTogglesFromStrapi: Data
   });
 
   return mappedFeatureToggles;
+};
+
+export const mapLocaleToFrontendObject = (localesFromStrapi: LocaleEntryDto[]): LocaleEntry[] => {
+  const mappedLocales: LocaleEntry[] = [];
+
+  localesFromStrapi.map((localeFromStrapi) => {
+    const mappedLocale: LocaleEntry = {
+      id: localeFromStrapi.id,
+      name: localeFromStrapi.name,
+      strapiLocalCode: localeFromStrapi.code,
+      i18nLocaleCode: convertLanguageCodeToi18nLocale(localeFromStrapi.code),
+      momentLocaleCode : convertLanguageCodeToMomentLocale(localeFromStrapi.code),
+      flagCode: getFlagCodeFromStrapiLocale(localeFromStrapi.code),
+      isDefault: localeFromStrapi.isDefault
+    };
+
+    mappedLocales.push(mappedLocale);
+  });
+
+  return mappedLocales;
 };
