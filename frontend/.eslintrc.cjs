@@ -14,7 +14,7 @@ module.exports = {
   ],
   rules: {
     'vue/no-unsupported-features': ['error', {
-      'version': '2.7.14',
+      'version': '3.3.11',
       'ignores': []
     }],
     'import/order': [
