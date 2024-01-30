@@ -12,6 +12,7 @@ import Card from 'primevue/card';
 import PrimeVue from 'primevue/config';
 import Image from 'primevue/image';
 import InputText from 'primevue/inputtext';
+import ToastService from 'primevue/toastservice';
 import Tooltip from 'primevue/tooltip';
 import { createApp } from 'vue';
 import CountryFlag from 'vue-country-flag-next';
@@ -40,6 +41,7 @@ app.directive('tooltip', Tooltip);
 import '/src/icons/fontAwesomeIconsConfig';
 
 app.use(PrimeVue);
+app.use(ToastService);
 app.use(i18n);
 app.use(createPinia());
 app.use(router);

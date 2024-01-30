@@ -23,6 +23,17 @@
   "settings": "Einstellungen",
   "select-a-language": "Wähle eine Sprache aus",
   "language": "Sprache",
+  "network-error": "Netzwerk Fehler",
+  "errors": {
+    "service": {
+      "feature-toggles": "Fehler beim Laden der Features. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "locales": "Fehler beim Laden der Spracheinstellungen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "milestones": "Fehler beim Laden der Meilensteine. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "personal-information": "Fehler beim Laden der allgemeinen Informationen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "personal-references": "Fehler beim Laden der Referenzen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "tech-stack": "Fehler beim Laden des Tech-Stacks. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben."
+    }
+  },
   "numbers": {
     "zero": "Null",
     "one": "eins",
