@@ -20,3 +20,9 @@ export const createLinkToDocumentOnToApi = (route: string) => {
 export const openLinkInNewTab = (url: string): void => {
   window.open(url, '_blank', 'noreferrer');
 };
+
+export const logError = (error: any): void => {
+  if (import.meta.env.MODE === 'development') {
+    console.error(error);
+  }
+};
