@@ -35,8 +35,8 @@ import {
 export const mapPersonalInformationToFrontendObject = (publicPersonalInformation: PersonalInformationPublicStrapiDto,
                                                        privatePersonalInformation: null | PersonalInformationPrivateStrapiDto): PersonalInformation => {
 
-  const githubLink = publicPersonalInformation.githubProfile ? mapExternalLinkToFrontendObject(publicPersonalInformation.githubProfile.data.attributes) : '';
-  const linkedInLink = publicPersonalInformation.linkedInProfile ? mapExternalLinkToFrontendObject(publicPersonalInformation.linkedInProfile.data.attributes) : '';
+  const githubLink = publicPersonalInformation.githubProfile?.data?.attributes ? mapExternalLinkToFrontendObject(publicPersonalInformation.githubProfile.data.attributes) : '';
+  const linkedInLink = publicPersonalInformation.linkedInProfile?.data?.attributes ? mapExternalLinkToFrontendObject(publicPersonalInformation.linkedInProfile.data.attributes) : '';
 
   return {
     firstname: publicPersonalInformation.firstname,
