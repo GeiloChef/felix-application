@@ -100,8 +100,13 @@ export interface FeatureToggle {
   active: boolean
 }
 
-export interface FeatureToggle {
+export interface LocaleEntry {
+  id: number,
   name: string,
-  active: boolean
+  strapiLocalCode: string,
+  i18nLocaleCode: string,
+  momentLocaleCode: string,
+  flagCode: string,
+  isDefault: boolean,
 }
 

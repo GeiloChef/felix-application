@@ -142,7 +142,9 @@ export interface FeatureTogglesDto extends StrapiData {
   active: boolean
 }
 
-export interface FeatureTogglesDto extends StrapiData {
-  name: string;
-  active: boolean
+export interface LocaleEntryDto extends StrapiData {
+  id: number,
+  name: string,
+  code: string,
+  isDefault: boolean
 }
