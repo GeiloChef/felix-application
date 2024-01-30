@@ -79,3 +79,8 @@ export interface ToastMessage {
   severity: ToastMessageTypes,
   duration: number
 }
+
+export interface UserLoginCredentials {
+  identifier: string,
+  password: string
+}

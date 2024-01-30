@@ -24,6 +24,21 @@
   "select-a-language": "Wähle eine Sprache aus",
   "language": "Sprache",
   "network-error": "Netzwerk Fehler",
+  "login": "Anmelden",
+  "login-error": "Fehler beim Anmelden",
+  "logout": "Abmelden",
+  "password": "Passwort",
+  "username": "Benutzername",
+  "request-credentials": "Anmeldedaten anfragen",
+  "proceed-as-guest": "Als Gast fortfahren",
+  "enter-the-page-as-guest": "Bevor du als Gast fortfährst, noch eine wichtige Information.",
+  "some-information-are-unavailable-for-guests": "Einige Informationen sind nicht (vollständig) verfügbar, wenn du als Gast fortfährst. Solltest du Anmeldedaten haben, empfehle ich dir, dich jetzt anzumelden. <br> <br> Du kannst dich später jederzeit oben rechts über das Menü anmelden, sobald du das Portfolio betreten hast.",
+  "contact-me-if-you-want-to-have-credentials": "Wenn du noch keine Anmeldedaten hast, kannst du mich auch gerne kontaktieren und deine Persönliche Logindaten anfragen.",
+  "login-page": {
+    "welcome-explanation": "Herzlich Willkommen auf meinem digitalen Portfolio. Hier findest du alle aktuellen Informationen über mich. <br> <br> Logge dich ein oder fahre als Gast fort.",
+    "login-explanation": "Einige Informationen sind aus Datenschutzgründen nur abrufbar, wenn du angemeldet bist. Die Anmeldedaten erhälst du von mir per Mail.",
+    "guest-explanation": "Wenn du bisher keine Daten von mir erhalten hast, kannst du jedoch einfach als Gast fortfahren und bereits etwas durchmein Portfolio stöbern."
+  },
   "errors": {
     "service": {
       "feature-toggles": "Fehler beim Laden der Features. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
@@ -32,11 +47,12 @@
       "personal-information": "Fehler beim Laden der allgemeinen Informationen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
       "personal-references": "Fehler beim Laden der Referenzen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
       "tech-stack": "Fehler beim Laden des Tech-Stacks. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben."
-    }
+    },
+    "login": "Die eingegebenen Nutzerdaten stimmen nicht mit den Nutzerdaten in unserer Datenbank überein. \n \n Bitte versuche es erneut oder kontaktiere mich."
   },
   "numbers": {
     "zero": "Null",
-    "one": "eins",
+    "one": "ein",
     "two": "zwei",
     "three": "drei",
     "four": "vier",

@@ -16,6 +16,9 @@ import {
   faSpinner,
   faLink,
   faGear,
+  faUser,
+  faArrowRight,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -34,4 +37,7 @@ library.add(
   faLinkedin,
   faGithub,
   faGear,
+  faUser,
+  faArrowRight,
+  faRightFromBracket,
 );
