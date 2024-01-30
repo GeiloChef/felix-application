@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, type Ref } from 'vue';
+import { computed, ref, type Ref } from 'vue';
 
 import type { Milestone, PersonalInformation, Reference, TechStackEntry } from '@/models/ui-models';
 import { fetchMilestones } from '@/services/MilestoneService';
@@ -16,6 +16,10 @@ export const useDataStore = defineStore('dataStore', () => {
   const milestones: Ref<Milestone[]> = ref([]);
   const techStack: Ref<TechStackEntry[]> = ref([]);
   const references: Ref<Reference[]> = ref([]);
+
+  const fullName = computed((): string => {
+    return personalInformation.value.firstname + ' ' + personalInformation.value.lastname;
+  });
 
   const getPersonalInformationFromService = async () => {
     fetchPersonalInformation().then((data: PersonalInformation) => personalInformation.value = data);
@@ -51,6 +55,7 @@ export const useDataStore = defineStore('dataStore', () => {
     milestones,
     techStack,
     references,
+    fullName,
     fetchAllInformationForHomeView
   };
 });

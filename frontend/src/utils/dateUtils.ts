@@ -1,6 +1,4 @@
 import moment, { type Moment } from 'moment';
-import 'moment/dist/locale/de';
-import { useI18n } from 'vue-i18n';
 
 import { DateFormats, UnitOfTimeForDifference } from '@/models/core';
 
@@ -28,52 +26,11 @@ export const calculateDifferenceBetweenDateAndToday = (date: moment.Moment, unit
 };
 
 /**
- * @description Returns the translated value for a number to display small numbers as translated strings. Numbers above 12 will just be returned as string
- * @param number - only works with numbers from 1-12
- */
-export const getTranslatedNumber = (number: number): string => {
-  const { t } = useI18n();
-
-  switch (number) {
-    case 0:
-      return t('numbers.zero');
-    case 1:
-      return t('numbers.one');
-    case 2:
-      return t('numbers.two');
-    case 3:
-      return t('numbers.three');
-    case 4:
-      return t('numbers.four');
-    case 5:
-      return t('numbers.five');
-    case 6:
-      return t('numbers.six');
-    case 7:
-      return t('numbers.seven');
-    case 8:
-      return t('numbers.eight');
-    case 9:
-      return t('numbers.nine');
-    case 10:
-      return t('numbers.ten');
-    case 11:
-      return t('numbers.eleven');
-    case 12:
-      return t('numbers.twelve');
-    default:
-      return number.toString();
-  }
-};
-
-/**
  * @description Takes a moment date object and outputs a formatted date depending on the locale selected by the user
  * @param date {Moment} - moment date object
  * @param format {DateFormats} - default: DD MM YYYY
  * @returns datestring {string} - formatted date string like: 13.05.1997
  */
 export const formatDateForUi = (date: Moment, format: DateFormats = DateFormats.DayMonthYearShort) => {
-  moment.locale('de');
-
   return date.format(format);
 };

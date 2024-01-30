@@ -2,6 +2,10 @@ import './assets/main.css';
 import 'primevue/resources/themes/lara-dark-blue/theme.css';
 import '@/utils/jsPrototypeExtension';
 
+import 'moment/dist/locale/de';
+import 'moment/dist/locale/es.js';
+import 'moment/dist/locale/en-gb.js';
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { createPinia } from 'pinia';
 import Card from 'primevue/card';
@@ -10,6 +14,7 @@ import Image from 'primevue/image';
 import InputText from 'primevue/inputtext';
 import Tooltip from 'primevue/tooltip';
 import { createApp } from 'vue';
+import CountryFlag from 'vue-country-flag-next';
 
 import App from './App.vue';
 import router from './router';
@@ -27,6 +32,7 @@ app.component('Button', ButtonWithIcon);
 app.component('Image', Image);
 app.component('InputText', InputText);
 app.component('Card', Card);
+app.component('CountryFlag', CountryFlag);
 
 app.directive('tooltip', Tooltip);
 

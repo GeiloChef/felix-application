@@ -64,7 +64,7 @@
   import ColoredBackgroundCard from '@/components/partials/ColoredBackgroundCard.vue';
   import { ColoredBackgroundCardTypes } from '@/models/core';
   import { useDataStore } from '@/stores/dataStore';
-  import { getTranslatedNumber } from '@/utils/dateUtils';
+  import { getTranslatedNumber } from '@/utils/formatUtils';
 
   const { t } = useI18n();
 

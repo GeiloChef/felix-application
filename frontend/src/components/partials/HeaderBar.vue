@@ -42,6 +42,59 @@
         <Button
           :label="$t('start-a-tour')"
           size="small" />
+
+        <Button
+          v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
+          text
+          size="small"
+          severity="secondary"
+          @click="toggleSettingsMenu($event)">
+          <font-awesome-icon
+            size="xl"
+            icon="fa-gear" />
+        </Button>
+
+        <OverlayPanel
+          ref="SettingsOverlay"
+          class="min-w-64">
+          <div class="text-lg font-bold">
+            {{ $t('settings') }}
+          </div>
+          <Divider />
+          <div class="flex flex-row items-center gap-8">
+            <div>{{$t('language')}}</div>
+            <Dropdown
+              v-model="selectedLanguage"
+              :options="languages"
+              optionLabel="name"
+              :placeholder="$t('select-a-language')"
+              class="w-full md:w-14rem"
+              @change="processLanguageChange">
+              <template #value="slotProps">
+                <div
+                  v-if="slotProps.value"
+                  class="flex flex-row gap-4 items-center">
+                  <CountryFlag
+                    class="!-mt-2"
+                    :country="slotProps.value.flagCode" />
+                  <div>{{ slotProps.value.name }}</div>
+                </div>
+              </template>
+              <template #option="slotProps">
+                <div
+                  v-if="slotProps.option"
+                  class="flex flex-row gap-4 items-center">
+                  <CountryFlag
+                    class="!-mt-2"
+                    :country="slotProps.option.flagCode" />
+                  <div>
+                    {{ slotProps.option.name }}
+                  </div>
+                </div>
+              </template>
+            </Dropdown>
+          </div>
+        </OverlayPanel>
       </div>
     </template>
   </Menubar>
@@ -52,17 +105,36 @@
   import Avatar from 'primevue/avatar';
   import Button from 'primevue/button';
   import Divider from 'primevue/divider';
+  import Dropdown, { type DropdownChangeEvent } from 'primevue/dropdown';
   import Menubar from 'primevue/menubar';
-  import { computed } from 'vue';
+  import OverlayPanel from 'primevue/overlaypanel';
+  import { computed, type Ref, ref } from 'vue';
+  import { useI18n } from 'vue-i18n';
 
+  import { AvailableFeatures } from '@/models/core';
   import { useDataStore } from '@/stores/dataStore';
+  import { useFeatureToggleStore } from '@/stores/featureToggleStore';
+  import { useLanguageStore } from '@/stores/languageStore';
   import { openLinkInNewTab } from '@/utils/coreUtils';
 
+  const { locale } = useI18n();
+
+  const featureToggleStore = useFeatureToggleStore();
+
   const dataStore = useDataStore();
+  const { personalInformation, fullName } = storeToRefs(dataStore);
 
-  const { personalInformation } = storeToRefs(dataStore);
+  const languageStore = useLanguageStore();
+  const { selectedLanguage, languages } = storeToRefs(languageStore);
 
-  const fullName = computed((): string => {
-    return personalInformation.value.firstname + ' ' + personalInformation.value.lastname;
-  });
+  const SettingsOverlay: Ref<typeof OverlayPanel | null> = ref(null);
+  const toggleSettingsMenu = (event: MouseEvent | PointerEvent) => {
+    if (SettingsOverlay.value) {
+      SettingsOverlay.value.toggle(event);
+    }
+  };
+
+  const processLanguageChange = (event: DropdownChangeEvent) => {
+    languageStore.processLanguageChange(event.value);
+  };
 </script>
