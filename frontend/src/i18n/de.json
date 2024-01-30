@@ -20,6 +20,9 @@
   "coding-experience": "Programmiererfahrung",
   "working-experience": "Berufserfahrung",
   "education": "Weiterbildung",
+  "settings": "Einstellungen",
+  "select-a-language": "Wähle eine Sprache aus",
+  "language": "Sprache",
   "numbers": {
     "zero": "Null",
     "one": "eins",
