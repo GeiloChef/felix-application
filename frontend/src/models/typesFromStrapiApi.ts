@@ -148,3 +148,17 @@ export interface LocaleEntryDto extends StrapiData {
   code: string,
   isDefault: boolean
 }
+
+export interface UserDataDto extends StrapiData {
+  blocked: boolean,
+  confirmed: boolean,
+  email?: string,
+  id: 1,
+  provider: string,
+  username: string,
+}
+
+export interface LoginResponseDto {
+  jwt: string,
+  user: UserDataDto
+}

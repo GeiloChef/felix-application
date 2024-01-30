@@ -12,6 +12,7 @@ import type {
   ReferencesStrapiDto,
   StrapiMediaDto,
   TechStackStrapiDto,
+  UserDataDto,
 } from '@/models/typesFromStrapiApi';
 import {
   type ExternalLink,
@@ -22,7 +23,8 @@ import {
   type Milestone,
   type PersonalInformation,
   type Reference,
-  type TechStackEntry
+  type TechStackEntry,
+  type UserData
 } from '@/models/ui-models';
 import { createLinkToDocumentOnToApi } from '@/utils/coreUtils';
 import { calculateDifferenceBetweenDateAndToday } from '@/utils/dateUtils';
@@ -218,4 +220,15 @@ export const mapLocaleToFrontendObject = (localesFromStrapi: LocaleEntryDto[]): 
   });
 
   return mappedLocales;
+};
+
+export const mapUserToFrontendObject = (user: UserDataDto, jwt: string): UserData => {
+  return {
+    id: user.id,
+    username: user.username,
+    email: user.email ?? '',
+    jwt: jwt,
+    blocked: user.blocked,
+    confirmed: user.confirmed,
+  };
 };

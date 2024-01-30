@@ -110,3 +110,12 @@ export interface LocaleEntry {
   isDefault: boolean,
 }
 
+export interface UserData {
+  blocked: boolean,
+  confirmed: boolean,
+  email?: string,
+  id: 1,
+  jwt: string,
+  username: string,
+}
+
