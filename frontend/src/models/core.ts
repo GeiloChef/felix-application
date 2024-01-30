@@ -65,3 +65,17 @@ export enum ButtonIconPosition {
 export enum AvailableFeatures {
   Internationalization = 'internationalization'
 }
+
+export enum ToastMessageTypes {
+  Info = 'info',
+  Success = 'success',
+  Warn = 'warn',
+  Error = 'error',
+}
+
+export interface ToastMessage {
+  title: string,
+  description: string,
+  severity: ToastMessageTypes,
+  duration: number
+}
