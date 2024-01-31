@@ -4,7 +4,7 @@ import { UnitOfTimeForDifference } from '@/models/core';
 import type {
   DataObject,
   ExternalLinkDto,
-  FeatureTogglesDto,
+  FeatureTogglesDto, FileDto,
   LocaleEntryDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
@@ -17,6 +17,7 @@ import type {
 import {
   type ExternalLink,
   type FeatureToggle,
+  type FileObject,
   HiddenDefaultValue,
   type LocaleEntry,
   type MediaObject,
@@ -89,14 +90,25 @@ export const mapMilestonesToFrontendObject = (milestonesFromStrapi:  DataObject<
   const milestones: Milestone[] = [];
 
   milestonesFromStrapi.map((milestoneFromStrapi) => {
-    const attachments = milestoneFromStrapi.attributes.attachments ?? null;
-    const mappedAttachments: MediaObject[] = [];
+    const publicFiles = milestoneFromStrapi.attributes.publicFiles ?? null;
+    const mappedPublicFiles: FileObject[] = [];
 
-    if (attachments && attachments.data) {
-      attachments.data.map((attachment) => {
-        const mappedAttachment = mapStrapiMediaToFrontendObject(attachment.attributes);
+    if (publicFiles && publicFiles.data) {
+      publicFiles.data.map((publicFile) => {
+        const mappedPublicFile = mapStrapiFileToFrontendObject(publicFile, true);
 
-        mappedAttachments.push(mappedAttachment);
+        mappedPublicFiles.push(mappedPublicFile);
+      });
+    }
+
+    const privateFiles = milestoneFromStrapi.attributes.privateFiles ?? null;
+    const mappedPrivateFiles: FileObject[] = [];
+
+    if (privateFiles && privateFiles.data) {
+      privateFiles.data.map((privateFile) => {
+        const mappedPrivateFile = mapStrapiFileToFrontendObject(privateFile, false);
+
+        mappedPrivateFiles.push(mappedPrivateFile);
       });
     }
 
@@ -107,7 +119,7 @@ export const mapMilestonesToFrontendObject = (milestonesFromStrapi:  DataObject<
       endDate: moment(milestoneFromStrapi.attributes.endDate),
       locale: milestoneFromStrapi.attributes.locale,
       type: milestoneFromStrapi.attributes.type,
-      attachments:  mappedAttachments
+      files: [...mappedPublicFiles, ...mappedPrivateFiles]
     };
 
     milestones.push(mappedMilestone);
@@ -146,18 +158,39 @@ export const mapExternalLinkToFrontendObject = (externalLink: ExternalLinkDto): 
   };
 };
 
+export const mapStrapiFileToFrontendObject = (file:  DataObject<FileDto>, isPublic: boolean): FileObject => {
+  return {
+    id: file.id,
+    name: file.attributes.name,
+    description: file.attributes.description,
+    locale: file.attributes.locale,
+    isPublic: isPublic
+  };
+};
+
 export const mapReferencesToFrontendObject = (referencesFromStrapi: DataObject<ReferencesStrapiDto>[]): Reference[] => {
   const references: Reference[] = [];
 
   referencesFromStrapi.map((referenceFromStrapi) => {
-    const attachments = referenceFromStrapi.attributes.attachments ?? null;
-    const mappedAttachments: MediaObject[] = [];
+    const publicFiles = referenceFromStrapi.attributes.publicFiles ?? null;
+    const mappedPublicFiles: FileObject[] = [];
 
-    if (attachments && attachments.data) {
-      attachments.data.map((attachment) => {
-        const mappedAttachment = mapStrapiMediaToFrontendObject(attachment.attributes);
+    if (publicFiles && publicFiles.data) {
+      publicFiles.data.map((publicFile) => {
+        const mappedPublicFile = mapStrapiFileToFrontendObject(publicFile, true);
 
-        mappedAttachments.push(mappedAttachment);
+        mappedPublicFiles.push(mappedPublicFile);
+      });
+    }
+
+    const privateFiles = referenceFromStrapi.attributes.privateFiles ?? null;
+    const mappedPrivateFiles: FileObject[] = [];
+
+    if (privateFiles && privateFiles.data) {
+      privateFiles.data.map((privateFile) => {
+        const mappedPrivateFile = mapStrapiFileToFrontendObject(privateFile, false);
+
+        mappedPrivateFiles.push(mappedPrivateFile);
       });
     }
 
@@ -178,7 +211,7 @@ export const mapReferencesToFrontendObject = (referencesFromStrapi: DataObject<R
       description: referenceFromStrapi.attributes.description,
       type: referenceFromStrapi.attributes.referenceType,
       externalLinks: mappedExternalLinks,
-      attachments: mappedAttachments
+      files: [...mappedPublicFiles, ...mappedPrivateFiles]
     };
 
     references.push(mappedReference);

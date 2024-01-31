@@ -68,7 +68,7 @@ export interface Milestone {
   endDate: Moment,
   locale: string,
   type: MilestoneType,
-  attachments:  MediaObject[]
+  files: FileObject[]
 }
 
 export interface TechStackEntry {
@@ -92,7 +92,7 @@ export interface Reference {
   description: string,
   type: ReferenceType,
   externalLinks: ExternalLink[],
-  attachments: MediaObject[]
+  files: FileObject[]
 }
 
 export interface FeatureToggle {
@@ -117,5 +117,13 @@ export interface UserData {
   id: 1,
   jwt: string,
   username: string,
+}
+
+export interface FileObject {
+  id: number,
+  name: string,
+  description: string,
+  locale: string,
+  isPublic: boolean
 }
 

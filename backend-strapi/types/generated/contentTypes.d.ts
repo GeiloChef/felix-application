@@ -871,12 +871,6 @@ export interface ApiMilestoneMilestone extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    attachments: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     type: Attribute.Enumeration<
       ['SCHOOL_EDUCATION', 'CODING_EXPERIENCE', 'WORKING_EXPERIENCE']
     > &
@@ -885,6 +879,16 @@ export interface ApiMilestoneMilestone extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    publicFiles: Attribute.Relation<
+      'api::milestone.milestone',
+      'oneToMany',
+      'api::public-file.public-file'
+    >;
+    privateFiles: Attribute.Relation<
+      'api::milestone.milestone',
+      'oneToMany',
+      'api::private-file.private-file'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1156,6 +1160,124 @@ export interface ApiPersonalInformationPrivatePersonalInformationPrivate
   };
 }
 
+export interface ApiPrivateFilePrivateFile extends Schema.CollectionType {
+  collectionName: 'private_files';
+  info: {
+    singularName: 'private-file';
+    pluralName: 'private-files';
+    displayName: 'Files (private)';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    attachment: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::private-file.private-file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::private-file.private-file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::private-file.private-file',
+      'oneToMany',
+      'api::private-file.private-file'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPublicFilePublicFile extends Schema.CollectionType {
+  collectionName: 'public_files';
+  info: {
+    singularName: 'public-file';
+    pluralName: 'public-files';
+    displayName: 'Files (Public)';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    attachment: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::public-file.public-file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::public-file.public-file',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::public-file.public-file',
+      'oneToMany',
+      'api::public-file.public-file'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiReferenceReference extends Schema.CollectionType {
   collectionName: 'references';
   info: {
@@ -1199,16 +1321,15 @@ export interface ApiReferenceReference extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    attachments: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     external_links: Attribute.Relation<
       'api::reference.reference',
       'oneToMany',
       'api::external-link.external-link'
+    >;
+    publicFiles: Attribute.Relation<
+      'api::reference.reference',
+      'oneToMany',
+      'api::public-file.public-file'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1257,6 +1378,8 @@ declare module '@strapi/types' {
       'api::my-techstack-entry.my-techstack-entry': ApiMyTechstackEntryMyTechstackEntry;
       'api::personal-information.personal-information': ApiPersonalInformationPersonalInformation;
       'api::personal-information-private.personal-information-private': ApiPersonalInformationPrivatePersonalInformationPrivate;
+      'api::private-file.private-file': ApiPrivateFilePrivateFile;
+      'api::public-file.public-file': ApiPublicFilePublicFile;
       'api::reference.reference': ApiReferenceReference;
     }
   }

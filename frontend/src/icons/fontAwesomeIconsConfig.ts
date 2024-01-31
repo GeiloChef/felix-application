@@ -19,6 +19,8 @@ import {
   faUser,
   faArrowRight,
   faRightFromBracket,
+  faCircleInfo,
+  faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -40,4 +42,6 @@ library.add(
   faUser,
   faArrowRight,
   faRightFromBracket,
+  faCircleInfo,
+  faTriangleExclamation,
 );

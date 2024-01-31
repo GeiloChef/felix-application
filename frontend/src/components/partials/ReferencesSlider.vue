@@ -37,9 +37,9 @@
                   outlined
                   @click="openLinkInNewTab(link.url)"/>
                 <Button
-                  v-if="slotProps.data.attachments.length"
-                  @click="openAttachmentOverlay($event, slotProps.data.attachments)"
-                  :label="$t('attachment-with-number', slotProps.data.attachments.length, { count: slotProps.data.attachments.length }).capitalizeFirstLetter()"
+                  v-if="slotProps.data.files.length"
+                  @click="openAttachmentOverlay($event, slotProps.data.files)"
+                  :label="$t('attachment-with-number', slotProps.data.files.length, { count: slotProps.data.files.length }).capitalizeFirstLetter()"
                   icon="fa-paperclip"
                   size="small">
                 </Button>

@@ -9,11 +9,13 @@
   "attachment": "Anhang | Anhänge",
   "attachment-with-number": "{count} Anhang | {count} Anhänge",
   "action": "Aktion | Aktionen",
-  "you-need-to-be-logged-in-to-download-or-view-attachments": "Gästen steht die Ansicht und der Download von Anhängen nicht zur Verfügung.",
+  "you-need-to-be-logged-in-to-download-or-view-attachments": "Gästen steht die Ansicht und der Download einiger Anhänge nicht zur Verfügung.",
+  "private-files-can-only-be-seen-by-logged-in-users": "Diese Datei kann nur von angemeldeten Nutzern angesehen und heruntergeladen werden.",
   "my-tech-stack": "Mein Tech-Stack",
   "coding": "programmieren",
   "design": "Design",
   "name": "Name",
+  "private": "Privat",
   "category": "Kategorie",
   "skill-rating": "Skill-Bewertung",
   "my-references": "Meine Referenzen",
@@ -31,6 +33,7 @@
   "username": "Benutzername",
   "request-credentials": "Anmeldedaten anfragen",
   "proceed-as-guest": "Als Gast fortfahren",
+  "permission-error": "Keine ausreichenden Berechtigungen",
   "enter-the-page-as-guest": "Bevor du als Gast fortfährst, noch eine wichtige Information.",
   "some-information-are-unavailable-for-guests": "Einige Informationen sind nicht (vollständig) verfügbar, wenn du als Gast fortfährst. Solltest du Anmeldedaten haben, empfehle ich dir, dich jetzt anzumelden. <br> <br> Du kannst dich später jederzeit oben rechts über das Menü anmelden, sobald du das Portfolio betreten hast.",
   "contact-me-if-you-want-to-have-credentials": "Wenn du noch keine Anmeldedaten hast, kannst du mich auch gerne kontaktieren und deine Persönliche Logindaten anfragen.",
@@ -48,7 +51,10 @@
       "personal-references": "Fehler beim Laden der Referenzen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
       "tech-stack": "Fehler beim Laden des Tech-Stacks. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben."
     },
-    "login": "Die eingegebenen Nutzerdaten stimmen nicht mit den Nutzerdaten in unserer Datenbank überein. \n \n Bitte versuche es erneut oder kontaktiere mich."
+    "login": "Die eingegebenen Nutzerdaten stimmen nicht mit den Nutzerdaten in unserer Datenbank überein. \n \n Bitte versuche es erneut oder kontaktiere mich.",
+    "permissions": {
+      "file-download": "Die Datei konnte leider nicht heruntergeladen werden. Bitte versuche es erneut oder kontaktiere mich, wenn das Problem weiterhin besteht."
+    }
   },
   "numbers": {
     "zero": "Null",
