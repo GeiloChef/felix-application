@@ -60,38 +60,13 @@
         </div>
       </template>
     </Card>
-
-    <Dialog
-      v-model:visible="showGuestInfoModal"
-      modal
-      :header="$t('enter-the-page-as-guest')"
-      :style="{ width: '45rem' }">
-      <div v-html="$t('some-information-are-unavailable-for-guests')" />
-      <div class="mt-4">
-        {{ $t('contact-me-if-you-want-to-have-credentials') }}
-      </div>
-      <template #footer>
-        <div class="flex flex-row justify-end mt-8">
-          <Button
-            :label="$t('request-credentials')"
-            severity="secondary"
-            text/>
-          <Button
-            class="!justify-end"
-            icon="fa-arrow-right"
-            :label="$t('proceed-as-guest')"
-            :iconPosition="ButtonIconPosition.Right"
-            severity="info"
-            @click="proceedAsGuest"/>
-        </div>
-      </template>
-    </Dialog>
   </div>
 
 </template>
 
 <script setup lang="ts">
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+  import { storeToRefs } from 'pinia';
   import Card from 'primevue/card';
   import Dialog from 'primevue/dialog';
   import Password from 'primevue/password';
@@ -104,24 +79,23 @@
   const router = useRouter();
 
   const userInfoStore = useUserInfoStore();
+  const { userHasAcceptedGuestInformation } = storeToRefs(userInfoStore);
 
   const username = ref('');
   const password = ref('');
 
-  const showGuestInfoModal = ref(false);
-
   const toggleGuestInfoModal = ((): void => {
-    showGuestInfoModal.value = true;
+    if (userHasAcceptedGuestInformation.value) {
+      router.push({ name: 'home' });
+    } else {
+      userInfoStore.toggleGuestInfoModal();
+    }
   });
 
   const loginHasErrors = ref(false);
 
   const resetLoginErrorStatus = (): void => {
     loginHasErrors.value = false;
-  };
-
-  const proceedAsGuest = (): void => {
-    router.push({ name: 'home' });
   };
 
   const login = async (): Promise<void> => {

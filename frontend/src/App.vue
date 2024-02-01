@@ -6,7 +6,13 @@
     <!--  Used to show global messages to  -->
     <Toast />
     <RouterView :key="selectedLanguage.strapiLocalCode" />
+    <FooterBar />
 
+    <!--  Cookie Accept Dialog  -->
+    <CookiesDialog />
+
+    <!--  Guest Disclaimer Dialog  -->
+    <GuestDisclaimerDialog />
   </div>
 </template>
 
@@ -17,6 +23,9 @@
   import { computed, onMounted, watch } from 'vue';
   import { RouterView, useRoute } from 'vue-router';
 
+  import CookiesDialog from '@/components/partials/CookiesDialog.vue';
+  import FooterBar from '@/components/partials/FooterBar.vue';
+  import GuestDisclaimerDialog from '@/components/partials/GuestDisclaimerDialog.vue';
   import HeaderBar from '@/components/partials/HeaderBar.vue';
   import { useDataStore } from '@/stores/dataStore';
   import { useFeatureToggleStore } from '@/stores/featureToggleStore';
@@ -48,6 +57,7 @@
   onMounted(async (): Promise<void> => {
     await featureToggleStore.getFeatureTogglesFromService();
     await languageStore.getLanguagesFromService();
+    await dataStore.getLegalInformationFromService();
 
     // asynchronously fetch all data needed for the home view
     dataStore.fetchAllInformationForHomeView();

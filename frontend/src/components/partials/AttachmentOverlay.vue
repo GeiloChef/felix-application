@@ -33,7 +33,11 @@
                 <div
                   class="flex justify-center items-center"
                   v-if="isPrivateFileLocked(attachment)"
-                  v-tooltip="privateFileTooltip">
+                  v-tooltip="{
+                    value: i18n.global.t('private-files-can-only-be-seen-by-logged-in-users'),
+                    showDelay: 150,
+                    hideDelay: 0
+                  }">
                   <FontAwesomeIcon
                     class="!text-yellow-500"
                     icon="triangle-exclamation" />
@@ -81,6 +85,7 @@
   import { computed, ref, type Ref } from 'vue';
   import { useI18n } from 'vue-i18n';
 
+  import { i18n } from '@/i18n/config';
   import type { FileObject } from '@/models/ui-models';
   import { useAttachmentOverlayStore } from '@/stores/attachmentOverlayStore';
   import { useUserInfoStore } from '@/stores/userInfoStore';
@@ -92,12 +97,6 @@
 
   const attachmentOverlayStore = useAttachmentOverlayStore();
   const { currentViewedAttachments } = storeToRefs(attachmentOverlayStore);
-
-  const privateFileTooltip = ref({
-    value: t('private-files-can-only-be-seen-by-logged-in-users'),
-    showDelay: 150,
-    hideDelay: 0
-  });
 
   const isPrivateFileLocked = (file: FileObject) => {
     return !file.isPublic && !isUserLoggedIn.value;

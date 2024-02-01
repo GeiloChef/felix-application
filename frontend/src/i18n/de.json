@@ -37,10 +37,17 @@
   "enter-the-page-as-guest": "Bevor du als Gast fortfährst, noch eine wichtige Information.",
   "some-information-are-unavailable-for-guests": "Einige Informationen sind nicht (vollständig) verfügbar, wenn du als Gast fortfährst. Solltest du Anmeldedaten haben, empfehle ich dir, dich jetzt anzumelden. <br> <br> Du kannst dich später jederzeit oben rechts über das Menü anmelden, sobald du das Portfolio betreten hast.",
   "contact-me-if-you-want-to-have-credentials": "Wenn du noch keine Anmeldedaten hast, kannst du mich auch gerne kontaktieren und deine Persönliche Logindaten anfragen.",
+  "could-not-load-legal-information": "Die Rechtlichen Informationen für die Webseite konnten nicht geladen werden.",
+  "imprint": "Impressum",
+  "privacy-policy": "Datenschutzerklärung",
+  "before-you-enter-the-site": "Bevor du loslegen kannst...",
+  "please-confirm-that-you-have-read-the-privacy-policy": "Bitte bestätige, dass du die Datenschutzerklärung gelesen hast, und mit dem Inhalt einverstanden bist.",
+  "i-confirm-above-mentioned": "Ich bin einverstanden!",
+  "go-to-privacy-policy": "Hier gehts zur Datenschutzerklärung",
   "login-page": {
     "welcome-explanation": "Herzlich Willkommen auf meinem digitalen Portfolio. Hier findest du alle aktuellen Informationen über mich. <br> <br> Logge dich ein oder fahre als Gast fort.",
-    "login-explanation": "Einige Informationen sind aus Datenschutzgründen nur abrufbar, wenn du angemeldet bist. Die Anmeldedaten erhälst du von mir per Mail.",
-    "guest-explanation": "Wenn du bisher keine Daten von mir erhalten hast, kannst du jedoch einfach als Gast fortfahren und bereits etwas durchmein Portfolio stöbern."
+    "login-explanation": "Einige Informationen sind aus Datenschutzgründen nur abrufbar, wenn du angemeldet bist. Die Anmeldedaten erhältst du von mir per Mail.",
+    "guest-explanation": "Wenn du bisher keine Daten von mir erhalten hast, kannst du jedoch einfach als Gast fortfahren und bereits etwas durch mein Portfolio stöbern."
   },
   "errors": {
     "service": {
@@ -49,7 +56,8 @@
       "milestones": "Fehler beim Laden der Meilensteine. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
       "personal-information": "Fehler beim Laden der allgemeinen Informationen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
       "personal-references": "Fehler beim Laden der Referenzen. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
-      "tech-stack": "Fehler beim Laden des Tech-Stacks. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben."
+      "tech-stack": "Fehler beim Laden des Tech-Stacks. Bitte lade die Seite neu oder kontaktiere mich um das Problem zu beheben.",
+      "legal-information": "Fehler beim Laden der Rechtlichen Informationen. Die Seite steht erst zur Verfügung, wenn alle rechtlichen Hinweise geladen werden konnten. \n \n Sollte das Problem weiterhin bestehen, wende dich bitte direkt an mich."
     },
     "login": "Die eingegebenen Nutzerdaten stimmen nicht mit den Nutzerdaten in unserer Datenbank überein. \n \n Bitte versuche es erneut oder kontaktiere mich.",
     "permissions": {

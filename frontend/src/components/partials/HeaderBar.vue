@@ -7,11 +7,17 @@
           shape="circle"
           size="large"/>
         <div class="flex items-center font-bold ml-2 gap-2">
-          <span>
-            {{ fullName }}
-          </span>
-          <Divider layout="vertical" />
-          <div class="flex -ml-2">
+          <router-link :to="redirectToMainPage">
+            <span>
+              {{ fullName }}
+            </span>
+          </router-link>
+          <Divider
+            v-if="userHasAcceptedCookies"
+            layout="vertical" />
+          <div
+            v-if="userHasAcceptedCookies"
+            class="flex -ml-2">
             <Button
               v-if="personalInformation.githubProfile"
               severity="secondary"
@@ -40,6 +46,7 @@
     <template #end>
       <div class="flex align-items-center gap-2">
         <Button
+          v-if="userHasAcceptedCookies"
           :label="$t('start-a-tour')"
           size="small" />
 
@@ -147,7 +154,7 @@
   const featureToggleStore = useFeatureToggleStore();
 
   const userInfoStore = useUserInfoStore();
-  const { isUserLoggedIn } = storeToRefs(userInfoStore);
+  const { isUserLoggedIn, userHasAcceptedCookies, userHasAcceptedGuestInformation } = storeToRefs(userInfoStore);
 
   const dataStore = useDataStore();
   const { personalInformation, fullName } = storeToRefs(dataStore);
@@ -169,6 +176,14 @@
   const goToLoginPage = (): void => {
     router.push({ name: 'login' });
   };
+
+  const redirectToMainPage = computed(() => {
+    if (userHasAcceptedCookies.value) {
+      return { name: 'home' };
+    } else {
+      return { name: 'login' };
+    }
+  });
 
   const logout = (): void => {
     userInfoStore.processLogout();

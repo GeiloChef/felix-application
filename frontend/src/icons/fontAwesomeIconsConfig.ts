@@ -21,6 +21,7 @@ import {
   faRightFromBracket,
   faCircleInfo,
   faTriangleExclamation,
+  faFileCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -44,4 +45,5 @@ library.add(
   faRightFromBracket,
   faCircleInfo,
   faTriangleExclamation,
+  faFileCircleCheck,
 );
