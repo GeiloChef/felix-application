@@ -9,7 +9,9 @@
     :closeable="false"
     :closeOnEscape="false"
     :style="{ width: '35vw' }"
-    :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+    :breakpoints="{
+      '1199px': '75vw',
+      '640px': '95vw' }">
     <p class="m-0">
       {{ $t('please-confirm-that-you-have-read-the-privacy-policy') }}
     </p>
