@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "legal_informations",
+  "info": {
+    "singularName": "legal-information",
+    "pluralName": "legal-informations",
+    "displayName": "legalInformation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "imprint": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "privacyPolicy": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

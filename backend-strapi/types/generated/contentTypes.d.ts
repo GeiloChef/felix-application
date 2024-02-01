@@ -768,6 +768,55 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginEmailDesignerEmailTemplate
+  extends Schema.CollectionType {
+  collectionName: 'email_templates';
+  info: {
+    singularName: 'email-template';
+    pluralName: 'email-templates';
+    displayName: 'Email-template';
+    name: 'email-template';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+    increments: true;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    templateReferenceId: Attribute.Integer & Attribute.Unique;
+    design: Attribute.JSON;
+    name: Attribute.String;
+    subject: Attribute.String;
+    bodyHtml: Attribute.Text;
+    bodyText: Attribute.Text;
+    enabled: Attribute.Boolean & Attribute.DefaultTo<true>;
+    tags: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExternalLinkExternalLink extends Schema.CollectionType {
   collectionName: 'external_links';
   info: {
@@ -823,6 +872,92 @@ export interface ApiFeatureToggleFeatureToggle extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::feature-toggle.feature-toggle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLegalInformationLegalInformation extends Schema.SingleType {
+  collectionName: 'legal_informations';
+  info: {
+    singularName: 'legal-information';
+    pluralName: 'legal-informations';
+    displayName: 'legalInformation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    imprint: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    privacyPolicy: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::legal-information.legal-information',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::legal-information.legal-information',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::legal-information.legal-information',
+      'oneToMany',
+      'api::legal-information.legal-information'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiLoginCredentialRequestLoginCredentialRequest
+  extends Schema.CollectionType {
+  collectionName: 'login_credential_requests';
+  info: {
+    singularName: 'login-credential-request';
+    pluralName: 'login-credential-requests';
+    displayName: 'Login Credential Requests';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    username: Attribute.String;
+    email: Attribute.Email;
+    company: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::login-credential-request.login-credential-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::login-credential-request.login-credential-request',
       'oneToOne',
       'admin::user'
     > &
@@ -1372,8 +1507,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::external-link.external-link': ApiExternalLinkExternalLink;
       'api::feature-toggle.feature-toggle': ApiFeatureToggleFeatureToggle;
+      'api::legal-information.legal-information': ApiLegalInformationLegalInformation;
+      'api::login-credential-request.login-credential-request': ApiLoginCredentialRequestLoginCredentialRequest;
       'api::milestone.milestone': ApiMilestoneMilestone;
       'api::my-techstack-entry.my-techstack-entry': ApiMyTechstackEntryMyTechstackEntry;
       'api::personal-information.personal-information': ApiPersonalInformationPersonalInformation;
