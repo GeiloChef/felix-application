@@ -8,6 +8,8 @@ COPY . .
 
 RUN npm run build-only --force --production
 
-FROM sebp/lighttpd
+FROM rtsp/lighttpd
 
-COPY --from=builder dist /var/www/localhost/htdocs
+COPY --from=builder dist /var/www/html/
+
+COPY router.conf /etc/lighttpd/conf.d
