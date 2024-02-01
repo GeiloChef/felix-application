@@ -174,3 +174,8 @@ export interface LoginResponseDto {
   jwt: string,
   user: UserDataDto
 }
+
+export interface LegalInformationDto {
+  imprint: string,
+  privacyPolicy: string
+}

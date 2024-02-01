@@ -2,7 +2,7 @@ import type { AxiosPromise } from 'axios';
 
 import type { UserLoginCredentials } from '@/models/core';
 import type {
-    FeatureTogglesDto, FileExtendedDto,
+    FeatureTogglesDto, FileExtendedDto, LegalInformationDto,
     LocaleEntryDto,
     LoginResponseDto,
     MilestoneStrapiDto,
@@ -48,4 +48,8 @@ export const getPublicFileByIdFromStrapi = async (fileId: number):AxiosPromise<S
 
 export const getPrivateFileByIdFromStrapi = async (fileId: number):AxiosPromise<StrapiApiResponse<FileExtendedDto>> => {
     return await axios.get(`/private-files/${fileId}`);
+};
+
+export const fetchLegalInformationFromStrapi = async ():AxiosPromise<StrapiApiResponse<LegalInformationDto>> => {
+    return await axios.get('/legal-information');
 };

@@ -4,7 +4,7 @@ import { UnitOfTimeForDifference } from '@/models/core';
 import type {
   DataObject,
   ExternalLinkDto,
-  FeatureTogglesDto, FileDto,
+  FeatureTogglesDto, FileDto, LegalInformationDto,
   LocaleEntryDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
@@ -19,6 +19,7 @@ import {
   type FeatureToggle,
   type FileObject,
   HiddenDefaultValue,
+  type LegalInformation,
   type LocaleEntry,
   type MediaObject,
   type Milestone,
@@ -263,5 +264,12 @@ export const mapUserToFrontendObject = (user: UserDataDto, jwt: string): UserDat
     jwt: jwt,
     blocked: user.blocked,
     confirmed: user.confirmed,
+  };
+};
+
+export const mapLegalInformationToFrontendObject = (legalInformationFromStrapi: DataObject<LegalInformationDto>): LegalInformation => {
+  return {
+    imprint: legalInformationFromStrapi.attributes.imprint,
+    privacyPolicy: legalInformationFromStrapi.attributes.privacyPolicy
   };
 };

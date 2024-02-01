@@ -127,3 +127,8 @@ export interface FileObject {
   isPublic: boolean
 }
 
+export interface LegalInformation {
+  imprint: string,
+  privacyPolicy: string
+}
+
