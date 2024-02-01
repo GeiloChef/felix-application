@@ -40,9 +40,11 @@ export const useLanguageStore = defineStore('language', () => {
    * @param language
    */
   const processLanguageChange = (language: LocaleEntry) => {
-    i18n.global.locale.value = language.i18nLocaleCode as 'en' | 'de' | 'es';
-    moment.locale(language.momentLocaleCode);
-    axiosInstance.defaults.params['locale'] = language.strapiLocalCode;
+    if (language && language.strapiLocalCode) {
+      i18n.global.locale.value = language.i18nLocaleCode as 'en' | 'de' | 'es';
+      moment.locale(language.momentLocaleCode);
+      axiosInstance.defaults.params['locale'] = language.strapiLocalCode;
+    }
   };
 
   return {

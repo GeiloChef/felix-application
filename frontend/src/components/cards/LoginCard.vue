@@ -18,6 +18,7 @@
         v-model="selectedLanguage"
         :options="languages"
         optionLabel="name"
+        :optionDisabled="(option: LocaleEntry) => option.id === selectedLanguage.id"
         dataKey="id"
         @change="changeLanguage">
         <template #option="slotProps">
@@ -46,6 +47,7 @@
   import ColoredBackgroundCard from '@/components/partials/ColoredBackgroundCard.vue';
   import LoginForm from '@/components/partials/LoginForm.vue';
   import { AvailableFeatures, ColoredBackgroundCardTypes } from '@/models/core';
+  import type { LocaleEntry } from '@/models/ui-models';
   import { useFeatureToggleStore } from '@/stores/featureToggleStore';
   import { useLanguageStore } from '@/stores/languageStore';
 
