@@ -10,7 +10,7 @@
     <div
       class="w-full overflow-hidden"
       :class="[
-        { 'px-64 py-24': !noMargin },
+        { 'px-4 py-6 md:px-32 md:py-12 lg:px-40 lg:py-16  xl:px-64 xl:py-24': !noMargin },
         { 'full-screen-card': fullScreenCard },
         cardColorClass
       ]">
