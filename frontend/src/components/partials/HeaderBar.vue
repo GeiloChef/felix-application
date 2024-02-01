@@ -1,12 +1,13 @@
 <template>
   <Menubar class="rounded-none shadow-lg border-b-2 border-b-gray-600">
     <template #start>
-      <div class="flex align-items-center gap-2 select-none">
+      <div class="flex align-items-center gap-0 sm:gap-2 select-none">
         <Avatar
+          class="hidden sm:block"
           image="https://t3.ftcdn.net/jpg/02/43/12/34/240_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
           shape="circle"
           size="large"/>
-        <div class="flex items-center font-bold ml-2 gap-2">
+        <div class="flex items-center font-bold ml-0 sm:ml-2 gap-0 sm:gap-2">
           <router-link :to="redirectToMainPage">
             <span>
               {{ fullName }}
@@ -17,7 +18,7 @@
             layout="vertical" />
           <div
             v-if="userHasAcceptedCookies"
-            class="flex -ml-2">
+            class="hidden sm:flex -ml-2">
             <Button
               v-if="personalInformation.githubProfile"
               severity="secondary"
@@ -27,7 +28,9 @@
               <font-awesome-icon
                 size="xl"
                 icon="fa-brands fa-github" />
-              <span>Github</span>
+              <span class="hidden md:block">
+                Github
+              </span>
             </Button>
             <Button
               v-if="personalInformation.linkedInProfile"
@@ -37,7 +40,9 @@
               <font-awesome-icon
                 size="xl"
                 icon="fa-brands fa-linkedin" />
-              <span>LinkedIn</span>
+              <span class="hidden md:block">
+                LinkedIn
+              </span>
             </Button>
           </div>
         </div>
@@ -67,43 +72,49 @@
             {{ $t('settings') }}
           </div>
           <Divider />
-          <div class="flex flex-col gap-12">
+          <div class="flex flex-col">
 
             <div
               v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
               class="flex flex-row items-center gap-8">
               <div>{{$t('language')}}</div>
-              <Dropdown
-                v-model="selectedLanguage"
-                :options="languages"
-                optionLabel="name"
-                :placeholder="$t('select-a-language')"
-                class="w-full md:w-14rem"
-                @change="processLanguageChange">
-                <template #value="slotProps">
-                  <div
-                    v-if="slotProps.value"
-                    class="flex flex-row gap-4 items-center">
-                    <CountryFlag
-                      class="!-mt-2"
-                      :country="slotProps.value.flagCode" />
-                    <div>{{ slotProps.value.name }}</div>
-                  </div>
-                </template>
-                <template #option="slotProps">
-                  <div
-                    v-if="slotProps.option"
-                    class="flex flex-row gap-4 items-center">
-                    <CountryFlag
-                      class="!-mt-2"
-                      :country="slotProps.option.flagCode" />
-                    <div>
-                      {{ slotProps.option.name }}
-                    </div>
-                  </div>
-                </template>
-              </Dropdown>
+              <LanguageDropdownSelect />
             </div>
+
+            <div
+              v-if="userHasAcceptedCookies"
+              class="flex flex-col gap-4 my-12">
+              <div>
+                {{ $t('my-socials') }}
+              </div>
+              <Button
+                v-if="personalInformation.githubProfile"
+                severity="secondary"
+                class="h-10 flex flex-row gap-2 px-2"
+                outlined
+                @click="openLinkInNewTab(personalInformation.githubProfile.url)">
+                <font-awesome-icon
+                  size="xl"
+                  icon="fa-brands fa-github" />
+                <span class="block">
+                  Github
+                </span>
+              </Button>
+              <Button
+                v-if="personalInformation.linkedInProfile"
+                class="h-10 flex flex-row gap-2 px-2"
+                outlined
+                @click="openLinkInNewTab(personalInformation.linkedInProfile.url)">
+                <font-awesome-icon
+                  size="xl"
+                  icon="fa-brands fa-linkedin" />
+                <span class="block">
+                  LinkedIn
+                </span>
+              </Button>
+            </div>
+
+            <Divider />
 
             <div class="flex flex-row items-center justify-end">
               <ButtonWithIcon
@@ -140,16 +151,14 @@
   import { useRouter } from 'vue-router';
 
   import ButtonWithIcon from '@/components/elements/ButtonWithIcon.vue';
+  import LanguageDropdownSelect from '@/components/partials/LanguageDropdownSelect.vue';
   import { AvailableFeatures, ButtonIconPosition } from '@/models/core';
   import { useDataStore } from '@/stores/dataStore';
   import { useFeatureToggleStore } from '@/stores/featureToggleStore';
-  import { useLanguageStore } from '@/stores/languageStore';
   import { useUserInfoStore } from '@/stores/userInfoStore';
   import { openLinkInNewTab } from '@/utils/coreUtils';
 
   const router = useRouter();
-
-  const { locale } = useI18n();
 
   const featureToggleStore = useFeatureToggleStore();
 
@@ -159,18 +168,11 @@
   const dataStore = useDataStore();
   const { personalInformation, fullName } = storeToRefs(dataStore);
 
-  const languageStore = useLanguageStore();
-  const { selectedLanguage, languages } = storeToRefs(languageStore);
-
   const SettingsOverlay: Ref<typeof OverlayPanel | null> = ref(null);
   const toggleSettingsMenu = (event: MouseEvent | PointerEvent | null) => {
     if (SettingsOverlay.value) {
       SettingsOverlay.value.toggle(event);
     }
-  };
-
-  const processLanguageChange = (event: DropdownChangeEvent) => {
-    languageStore.processLanguageChange(event.value);
   };
 
   const goToLoginPage = (): void => {
