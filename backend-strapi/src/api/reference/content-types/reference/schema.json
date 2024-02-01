@@ -53,26 +53,15 @@
       },
       "type": "string"
     },
-    "attachments": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "external_links": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::external-link.external-link"
+    },
+    "publicFiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::public-file.public-file"
     }
   }
 }

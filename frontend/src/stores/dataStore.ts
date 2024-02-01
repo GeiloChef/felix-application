@@ -1,7 +1,15 @@
+import { type RemovableRef, useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed, ref, type Ref } from 'vue';
 
-import type { Milestone, PersonalInformation, Reference, TechStackEntry } from '@/models/ui-models';
+import type {
+  LegalInformation,
+  Milestone,
+  PersonalInformation,
+  Reference,
+  TechStackEntry
+} from '@/models/ui-models';
+import { fetchLegalInformation } from '@/services/LegalInformationService';
 import { fetchMilestones } from '@/services/MilestoneService';
 import { fetchPersonalInformation } from '@/services/PersonalInformationService';
 import { fetchReferences } from '@/services/ReferenceService';
@@ -16,6 +24,8 @@ export const useDataStore = defineStore('dataStore', () => {
   const milestones: Ref<Milestone[]> = ref([]);
   const techStack: Ref<TechStackEntry[]> = ref([]);
   const references: Ref<Reference[]> = ref([]);
+  const legalInformation: RemovableRef<LegalInformation> = useLocalStorage('legalInformation', {} as LegalInformation);
+
 
   const fullName = computed((): string => {
     return personalInformation.value.firstname + ' ' + personalInformation.value.lastname;
@@ -43,6 +53,14 @@ export const useDataStore = defineStore('dataStore', () => {
     });
   };
 
+  const getLegalInformationFromService = async () => {
+    fetchLegalInformation().then((data: LegalInformation | false) => {
+      if (data) {
+        legalInformation.value = data;
+      }
+    });
+  };
+
   const fetchAllInformationForHomeView = async () => {
     getPersonalInformationFromService();
     getMilestonesFromService();
@@ -56,6 +74,8 @@ export const useDataStore = defineStore('dataStore', () => {
     techStack,
     references,
     fullName,
-    fetchAllInformationForHomeView
+    legalInformation,
+    fetchAllInformationForHomeView,
+    getLegalInformationFromService
   };
 });

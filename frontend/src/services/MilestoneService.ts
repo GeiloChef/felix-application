@@ -1,8 +1,12 @@
+import { i18n } from '@/i18n/config';
 import {
   mapMilestonesToFrontendObject
 } from '@/mapper/StrapiApiToFrontendMapper';
+import { ToastMessageTypes } from '@/models/core';
 import type { Milestone } from '@/models/ui-models';
 import { fetchMilestonesFromStrapi } from '@/services/api/StrapiApi';
+import { useToastMessageStore } from '@/stores/toastMessageStore';
+import { logError } from '@/utils/coreUtils';
 
 export const fetchMilestones = async (): Promise<Milestone[]>  => {
   try {
@@ -12,9 +16,9 @@ export const fetchMilestones = async (): Promise<Milestone[]>  => {
 
     return mapMilestonesToFrontendObject(milestoneData);
   } catch (error) {
-    console.log(error);
+    useToastMessageStore().addNewToastMessage(i18n.global.t('network-error'), i18n.global.t('errors.service.milestones'), ToastMessageTypes.Error);
+    logError(error);
 
     return [];
-    //todo: implement error handling
   }
 };

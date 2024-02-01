@@ -26,11 +26,11 @@
           </template>
           <template #footer>
             <div
-              v-if="slotProps.item.attachments.length"
+              v-if="slotProps.item.files.length"
               class="flex gap-3 mt-1 justify-end">
               <Button
-                @click="openAttachmentOverlay($event, slotProps.item.attachments)"
-                :label="t('attachment-with-number', slotProps.item.attachments.length, { count: slotProps.item.attachments.length }).capitalizeFirstLetter()"
+                @click="openAttachmentOverlay($event, slotProps.item.files)"
+                :label="t('attachment-with-number', slotProps.item.files.length, { count: slotProps.item.files.length }).capitalizeFirstLetter()"
                 icon="fa-paperclip"
                 size="small">
               </Button>

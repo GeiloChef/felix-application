@@ -108,7 +108,8 @@ export interface MilestoneStrapiDto extends StrapiData {
   endDate: string,
   locale: string,
   type: MilestoneType,
-  attachments:  StrapiMultiMediaApiResponse<StrapiMediaDto> | null
+  publicFiles?: StrapiMultiMediaApiResponse<FileDto>,
+  privateFiles?: StrapiMultiMediaApiResponse<FileDto>,
 }
 
 export interface TechStackStrapiDto extends StrapiData {
@@ -126,6 +127,16 @@ export interface ExternalLinkDto extends StrapiData {
   link: string,
 }
 
+export interface FileDto extends StrapiData {
+  name: string,
+  description: string,
+  locale: string
+}
+
+export interface FileExtendedDto extends FileDto {
+  attachment: StrapiMediaApiResponse<StrapiMediaDto>
+}
+
 export interface ReferencesStrapiDto extends StrapiData {
   name: string,
   subHeadline: string,
@@ -134,7 +145,8 @@ export interface ReferencesStrapiDto extends StrapiData {
   referenceType: ReferenceType,
   skillRating: number,
   locale: string,
-  attachments: StrapiMultiMediaApiResponse<StrapiMediaDto> | null
+  publicFiles?: StrapiMultiMediaApiResponse<FileDto>,
+  privateFiles?: StrapiMultiMediaApiResponse<FileDto>,
 }
 
 export interface FeatureTogglesDto extends StrapiData {
@@ -147,4 +159,23 @@ export interface LocaleEntryDto extends StrapiData {
   name: string,
   code: string,
   isDefault: boolean
+}
+
+export interface UserDataDto extends StrapiData {
+  blocked: boolean,
+  confirmed: boolean,
+  email?: string,
+  id: 1,
+  provider: string,
+  username: string,
+}
+
+export interface LoginResponseDto {
+  jwt: string,
+  user: UserDataDto
+}
+
+export interface LegalInformationDto {
+  imprint: string,
+  privacyPolicy: string
 }

@@ -1,10 +1,17 @@
 <template>
   <div>
+    <!--  Start of card triangle  -->
+    <div
+      v-if="showTopTriangle"
+      class="w-full triangle rotate-180"
+      :class="triangleBackgroundClass"
+      :style="triangleBorderStyle"/>
     <!--  Card content  -->
     <div
       class="w-full overflow-hidden"
       :class="[
         { 'px-64 py-24': !noMargin },
+        { 'full-screen-card': fullScreenCard },
         cardColorClass
       ]">
       <div
@@ -46,7 +53,15 @@
     hideTriangle: {
       type: Boolean,
       default: false
-    }
+    },
+    showTopTriangle: {
+      type: Boolean,
+      default: false
+    },
+    fullScreenCard: {
+      type: Boolean,
+      default: false
+    },
   });
 
   const { colorType } = toRefs(props);
@@ -83,5 +98,9 @@
 .triangle {
   border-style: solid;
   border-width: 4rem 35vw 0 35vw;
+}
+
+.full-screen-card {
+  min-height: calc(100vh - (4rem * 2))
 }
 </style>
