@@ -2,14 +2,14 @@
   <div>
     <div class="flex justify-center">
       <Carousel
-        class="w-2/3"
+        class="w-full lg:w-5/6 2xl:w-2/3"
         :value="references"
         :numVisible="1"
         :numScroll="3">
         <template #item="slotProps">
           <Card class="relative">
             <template #title>
-              <div>
+              <div class="mt-6 lg:mt-0">
                 {{ slotProps.data.name }}
               </div>
               <div class="text-sm mt-2 text-gray-500">
@@ -27,7 +27,7 @@
               </p>
             </template>
             <template #footer>
-              <div class="flex gap-4 justify-end">
+              <div class="flex flex-col md:flex-row gap-4 justify-end">
                 <Button
                   v-for="link in slotProps.data.externalLinks"
                   :key="link.name"

@@ -22,7 +22,7 @@ export const useUserInfoStore = defineStore('userInformation', () => {
   };
 
   const toggleGuestInfoModal = (): void => {
-    guestInfoModalIsToggled.value = true;
+    guestInfoModalIsToggled.value = !guestInfoModalIsToggled.value;
   };
 
   const acceptGuestInformation = (): void => {

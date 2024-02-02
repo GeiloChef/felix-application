@@ -15,9 +15,11 @@
       v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
       class="flex flex-row justify-center mt-8">
       <SelectButton
+        class="hidden sm:block"
         v-model="selectedLanguage"
         :options="languages"
         optionLabel="name"
+        :optionDisabled="(option: LocaleEntry) => option.id === selectedLanguage.id"
         dataKey="id"
         @change="changeLanguage">
         <template #option="slotProps">
@@ -31,6 +33,9 @@
           </div>
         </template>
       </SelectButton>
+      <LanguageDropdownSelect
+        v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
+        class="flex sm:hidden" />
     </div>
 
     <div class="mt-12 flex flex-row justify-center">
@@ -44,8 +49,10 @@
   import SelectButton, { type SelectButtonChangeEvent } from 'primevue/selectbutton';
 
   import ColoredBackgroundCard from '@/components/partials/ColoredBackgroundCard.vue';
+  import LanguageDropdownSelect from '@/components/partials/LanguageDropdownSelect.vue';
   import LoginForm from '@/components/partials/LoginForm.vue';
   import { AvailableFeatures, ColoredBackgroundCardTypes } from '@/models/core';
+  import type { LocaleEntry } from '@/models/ui-models';
   import { useFeatureToggleStore } from '@/stores/featureToggleStore';
   import { useLanguageStore } from '@/stores/languageStore';
 

@@ -31,6 +31,7 @@
         </Column>
         <Column
           field="catagory"
+          class="hidden md:table-cell"
           :header="$t('category')">
           <template #body="slotProps">
             <span>

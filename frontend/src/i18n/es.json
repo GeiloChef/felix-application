@@ -31,7 +31,7 @@
   "logout": "Cerrar sesión",
   "password": "Contraseña",
   "username": "Nombre de usuario",
-  "request-credentials": "Request login details",
+  "request-credentials": "Solicitar datos de acceso",
   "proceed-as-guest": "Solicitar datos de acceso",
   "permission-error": "Autorización insuficiente",
   "enter-the-page-as-guest": "Antes de continuar como invitado, un dato importante.",
@@ -44,6 +44,7 @@
   "please-confirm-that-you-have-read-the-privacy-policy": "Confirme que ha leído la política de privacidad y que está de acuerdo con su contenido.",
   "i-confirm-above-mentioned": "¡Estoy de acuerdo!",
   "go-to-privacy-policy": "Haga clic aquí para consultar la política de privacidad",
+  "my-socials": "Encuéntrame aquí:",
   "login-page": {
     "welcome-explanation": "Bienvenido a mi portafolio digital. Aquí encontrarás toda la información más reciente sobre mí. <br> <br> Inicie sesión o continúe como invitado.",
     "login-explanation": "Por motivos de protección de datos, parte de la información sólo está disponible si ha iniciado sesión. Le enviaré los datos de acceso por correo electrónico.",

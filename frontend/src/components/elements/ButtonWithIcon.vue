@@ -5,8 +5,10 @@
     :loading="loading">
     <div
       v-if="iconPosition === ButtonIconPosition.Left && icon"
-      class="mr-2"
-      :class="{ 'spinner': loading }">
+      :class="{
+        'spinner': loading,
+        'mr-2': !!label
+      }">
       <FontAwesomeIcon :icon="iconToDisplay" />
     </div>
     <span v-if="label">
@@ -15,7 +17,10 @@
     <div
       v-if="iconPosition === ButtonIconPosition.Right && icon"
       class="ml-2"
-      :class="{ 'spinner': loading }">
+      :class="{
+        'spinner': loading,
+        'ml-2': !!label
+      }">
       <FontAwesomeIcon :icon="iconToDisplay" />
     </div>
   </Button>

@@ -3,14 +3,23 @@
     v-model:visible="showGuestInfoModal"
     modal
     :header="$t('enter-the-page-as-guest')"
-    :style="{ width: '45rem' }">
+    :style="{ width: '45rem' }"
+    :breakpoints="{
+      '640px': '95vw' }">
+    <template #closeicon>
+      <font-awesome-icon
+        @click="userInfoStore.toggleGuestInfoModal"
+        size="xl"
+        icon="circle-xmark" />
+    </template>
     <div v-html="$t('some-information-are-unavailable-for-guests')" />
     <div class="mt-4">
       {{ $t('contact-me-if-you-want-to-have-credentials') }}
     </div>
     <template #footer>
-      <div class="flex flex-row justify-end mt-8">
+      <div class="flex flex-col sm:flex-row gap-8 sm:gap-0 justify-end mt-8">
         <Button
+          class="!justify-end"
           :label="$t('request-credentials')"
           severity="secondary"
           text/>

@@ -12,7 +12,7 @@
               <FontAwesomeIcon icon="fa-user" />
               <InputText
                 id="username"
-                class="w-96"
+                class="w-80 sm:w-96"
                 :class="{ 'p-invalid': loginHasErrors }"
                 v-model="username"
                 :placeholder="$t('username')"
@@ -28,7 +28,7 @@
             </label>
             <Password
               id="password"
-              inputClass="w-96"
+              inputClass="w-80 sm:w-96"
               :class="{ 'p-invalid': loginHasErrors }"
               v-model="password"
               :feedback="false"

@@ -2,7 +2,7 @@
   <div class="my-16">
     <Timeline
       :value="milestones"
-      align="alternate">
+      :align="timelineAlignment">
       <template #marker="slotProps">
         <span class="flex w-12 h-12 items-center justify-center text-white rounded-full z-1 shadow-1 bg-blue-200">
           <FontAwesomeIcon
@@ -47,7 +47,7 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { storeToRefs } from 'pinia';
   import Timeline from 'primevue/timeline';
-  import { type Ref, ref } from 'vue';
+  import { computed, onBeforeUnmount, onMounted, type Ref, ref } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   import AttachmentOverlay from '@/components/partials/AttachmentOverlay.vue';
@@ -65,6 +65,8 @@
   const attachmentOverlayStore = useAttachmentOverlayStore();
 
   const AttachmentOverlayRef: Ref<typeof AttachmentOverlay | null> = ref(null);
+
+  const timelineAlignment: Ref<'alternate' | 'left'> = ref('alternate');
 
   const getTimelineIconByMilestoneType = (type: MilestoneType): string => {
     switch (type) {
@@ -87,8 +89,29 @@
       AttachmentOverlayRef.value.toggle(event);
     }
   };
+
+  const checkForResponsivenessOfTimeline = (): void => {
+    const thresholdForResponsivenessOfTimeline = 1536; // px -> lg breakpoint of tailwind
+
+    if (window.innerWidth <= thresholdForResponsivenessOfTimeline) {
+      timelineAlignment.value = 'left';
+    } else {
+      timelineAlignment.value = 'alternate';
+    }
+  };
+
+  onMounted((): void => {
+    checkForResponsivenessOfTimeline();
+    window.addEventListener('resize', checkForResponsivenessOfTimeline);
+  });
+
+  onBeforeUnmount((): void => {
+    window.removeEventListener('resize', checkForResponsivenessOfTimeline);
+  });
 </script>
 
 <style>
-
+.p-timeline-event-opposite {
+  @apply hidden 2xl:block
+}
 </style>

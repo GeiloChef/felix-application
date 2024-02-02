@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Card class="markdown-formatting px-64 select-none">
+    <Card class="markdown-formatting px-4 py-6 md:px-32 md:py-12 lg:px-40 lg:py-16  xl:px-64 xl:py-24 select-none">
       <template #content>
         <div v-html="privacyPolicyInHtml" />
       </template>
