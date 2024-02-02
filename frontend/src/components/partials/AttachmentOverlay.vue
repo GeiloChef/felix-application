@@ -50,7 +50,7 @@
               </div>
               <div class="flex flex-row gap-4">
                 <Button
-                  class="max-h-8"
+                  class="max-h-8 hidden md:flex"
                   size="small"
                   icon="eye"
                   severity="secondary"
@@ -59,12 +59,28 @@
                   :label="t('preview').capitalizeFirstLetter()"
                   @click="triggerPreviewOfAttachment(attachment)" />
                 <Button
-                  class="max-h-8"
+                  class="max-h-8 hidden md:flex"
                   size="small"
                   icon="file-download"
                   severity="success"
                   :disabled="isPrivateFileLocked(attachment)"
                   :label="t('download').capitalizeFirstLetter()"
+                  @click="triggerDownloadOfAttachment(attachment)" />
+                <!--  Buttons for small devices with only icons  -->
+                <Button
+                  class="max-h-8 flex md:hidden"
+                  size="small"
+                  icon="eye"
+                  severity="secondary"
+                  outlined
+                  :disabled="isPrivateFileLocked(attachment)"
+                  @click="triggerPreviewOfAttachment(attachment)" />
+                <Button
+                  class="max-h-8 flex md:hidden"
+                  size="small"
+                  icon="file-download"
+                  severity="success"
+                  :disabled="isPrivateFileLocked(attachment)"
                   @click="triggerDownloadOfAttachment(attachment)" />
               </div>
             </div>
@@ -131,7 +147,16 @@
 <style lang="scss">
 #attachmentOverlay{
   .p-overlaypanel-content {
-    min-width: 36rem
+    max-width: 100vw;
   }
 }
+
+@media (min-width: 768px) {
+  #attachmentOverlay{
+    .p-overlaypanel-content {
+      min-width: 36rem;
+    }
+  }
+}
+
 </style>
