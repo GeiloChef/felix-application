@@ -4,22 +4,28 @@
     :color-type="ColoredBackgroundCardTypes.Bright"
     hide-triangle
     no-margin>
-    <div class="personal-information-card-parent flex justify-content items-center overflow-hidden relative">
-      <div class="w-1/2">
-        <div class="profile-image-parent overflow-hidden">
+    <div class="md-personal-information-card-parent flex flex-col lg:flex-row gap-8 justify-content items-center overflow-hidden relative xl:pb-0">
+      <div class="lg:w-full xl:w-1/2">
+        <div class="md-profile-image-parent overflow-hidden">
           <img
-            class="profile-image"
+            class="hidden lg:block md-profile-image"
             v-if="personalInformation.image"
             :src="personalInformation.image.formats!.large.url"
             :alt="personalInformation.image.alternativeText">
         </div>
+        <img
+          class="profile-image block lg:hidden mb-12 shadow-xl"
+          v-if="personalInformation.image"
+          :src="personalInformation.image.formats!.large.url"
+          :alt="personalInformation.image.alternativeText">
       </div>
-      <div class="w-1/2 h-full flex items-center justify-center">
+      <div class="w-2/3 lg:w-full xl:w-1/2 h-full flex items-center justify-center mb-16 lg:mb-0">
         <div>
           <div class="text-4xl text-center pr-10">
             {{ introductionText }}
           </div>
-          <div class="mt-24 gap-8 flex justify-center items-center">
+          <!--    Chips for all breakpoints besides the md-breakpoint of tailwind - md-breakpoint is handled above    -->
+          <div class="mt-24 gap-8 hidden xl:flex flex-col xl:flex-row justify-center items-center">
             <Chip
               v-for="chip in chips"
               class="pl-0 pr-3 bg-gray-900 rounded-full">
@@ -114,32 +120,44 @@
         icon: 'fa-brands fa-vuejs',
         text: personalInformation.value.currentJob ?? '',
       },
-      {
+      /*      {
         icon: 'fa-business-time',
         text: personalInformation.value.currentEmployer ?? '',
-      },
+      },*/
     ];
   });
 </script>
 
 <style>
-.personal-information-card-parent {
-  height: 40rem;
-}
+@media (min-width: 1024px) {
+  .md-personal-information-card-parent {
+    height: 40rem;
+  }
 
-.profile-image-parent {
-  border-radius: 100%;
-  width: 100vw;
-  left: -52vw;
-  height: 70rem;
-  top: -18.5rem;
-  @apply bg-black absolute
+  .md-profile-image-parent {
+    border-radius: 100%;
+    width: 100vw;
+    left: -52vw;
+    height: 70rem;
+    top: -18.5rem;
+    @apply bg-black absolute
+  }
+
+  .md-profile-image {
+    object-fit: cover;
+    width: 50%;
+    height: 84%;
+    margin-left: 50%;
+  }
 }
 
 .profile-image {
-  object-fit: cover;
-  width: 50%;
-  height: 84%;
-  margin-left: 50%;
+  background: black;
+  border-radius: 0 0 20% 20%;
+  width: 100vw;
+  left: 0;
+  height: 45vh;
+  top: 0;
+  @apply  object-fill
 }
 </style>
