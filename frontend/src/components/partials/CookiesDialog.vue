@@ -20,7 +20,7 @@
         <router-link
           :to="{ name: 'privacy-policy' }">
           <Button
-            class="mb-6 !justify-end"
+            class="mb-6 !max-h-full !justify-end"
             :label="$t('go-to-privacy-policy')"
             :iconPosition="ButtonIconPosition.Left"
             severity="secondary"
