@@ -22,7 +22,9 @@ import {
   faCircleInfo,
   faTriangleExclamation,
   faFileCircleCheck,
-  faCircleXmark
+  faCircleXmark,
+  faSchool,
+  faStar
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -47,5 +49,7 @@ library.add(
   faCircleInfo,
   faTriangleExclamation,
   faFileCircleCheck,
-  faCircleXmark
+  faCircleXmark,
+  faSchool,
+  faStar
 );

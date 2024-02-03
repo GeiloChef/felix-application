@@ -5,7 +5,7 @@
         class="w-full lg:w-5/6 2xl:w-2/3"
         :value="references"
         :numVisible="1"
-        :numScroll="3">
+        :numScroll="1">
         <template #item="slotProps">
           <Card class="relative">
             <template #title>
@@ -57,7 +57,7 @@
   import { storeToRefs } from 'pinia';
   import Carousel from 'primevue/carousel';
   import Tag from 'primevue/tag';
-  import { ref, type Ref } from 'vue';
+  import { computed, ref, type Ref } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   import AttachmentOverlay from '@/components/partials/AttachmentOverlay.vue';
@@ -81,7 +81,6 @@
       AttachmentOverlayRef.value.toggle(event);
     }
   };
-
   const translatedValueForReferenceType = (type: ReferenceType): string => {
     switch (type) {
       case ReferenceType.Education:

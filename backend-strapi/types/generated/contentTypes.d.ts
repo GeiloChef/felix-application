@@ -823,16 +823,41 @@ export interface ApiExternalLinkExternalLink extends Schema.CollectionType {
     singularName: 'external-link';
     pluralName: 'external-links';
     displayName: 'External Link';
+    description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-    link: Attribute.String;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    link: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::external-link.external-link',
       'oneToOne',
@@ -845,6 +870,12 @@ export interface ApiExternalLinkExternalLink extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::external-link.external-link',
+      'oneToMany',
+      'api::external-link.external-link'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -974,7 +1005,7 @@ export interface ApiMilestoneMilestone extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1026,6 +1057,7 @@ export interface ApiMilestoneMilestone extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::milestone.milestone',
       'oneToOne',
@@ -1057,53 +1089,22 @@ export interface ApiMyTechstackEntryMyTechstackEntry
     description: '';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    orderNumber: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    orderNumber: Attribute.Integer & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
     category: Attribute.Enumeration<['CODING', 'DESIGN']> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
       Attribute.DefaultTo<'CODING'>;
     skillRating: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
       Attribute.SetMinMax<{
         min: 1;
         max: 6;
       }>;
-    image: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::my-techstack-entry.my-techstack-entry',
       'oneToOne',
@@ -1116,12 +1117,6 @@ export interface ApiMyTechstackEntryMyTechstackEntry
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::my-techstack-entry.my-techstack-entry',
-      'oneToMany',
-      'api::my-techstack-entry.my-techstack-entry'
-    >;
-    locale: Attribute.String;
   };
 }
 
@@ -1304,7 +1299,7 @@ export interface ApiPrivateFilePrivateFile extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1313,12 +1308,14 @@ export interface ApiPrivateFilePrivateFile extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     description: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1333,6 +1330,7 @@ export interface ApiPrivateFilePrivateFile extends Schema.CollectionType {
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::private-file.private-file',
       'oneToOne',
@@ -1363,7 +1361,7 @@ export interface ApiPublicFilePublicFile extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1392,6 +1390,7 @@ export interface ApiPublicFilePublicFile extends Schema.CollectionType {
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::public-file.public-file',
       'oneToOne',
@@ -1422,7 +1421,7 @@ export interface ApiReferenceReference extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1466,8 +1465,14 @@ export interface ApiReferenceReference extends Schema.CollectionType {
       'oneToMany',
       'api::public-file.public-file'
     >;
+    privateFiles: Attribute.Relation<
+      'api::reference.reference',
+      'oneToMany',
+      'api::private-file.private-file'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::reference.reference',
       'oneToOne',

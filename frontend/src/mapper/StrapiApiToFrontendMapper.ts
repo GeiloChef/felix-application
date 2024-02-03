@@ -64,12 +64,17 @@ export const mapPersonalInformationToFrontendObject = (publicPersonalInformation
 
 export const mapStrapiMediaToFrontendObject = (mediaObject: StrapiMediaDto): MediaObject => {
 
+
   if (mediaObject.formats) {
-    mediaObject.formats.thumbnail.url = createLinkToDocumentOnToApi(mediaObject.formats.thumbnail.url);
-    mediaObject.formats.medium.url = createLinkToDocumentOnToApi(mediaObject.formats.medium.url);
-    mediaObject.formats.small.url = createLinkToDocumentOnToApi(mediaObject.formats.small.url);
-    mediaObject.formats.large.url = createLinkToDocumentOnToApi(mediaObject.formats.large.url);
+    if (mediaObject.formats.thumbnail) mediaObject.formats.thumbnail.url = createLinkToDocumentOnToApi(mediaObject.formats.thumbnail.url);
+
+    if (mediaObject.formats.medium) mediaObject.formats.medium.url = createLinkToDocumentOnToApi(mediaObject.formats.medium.url);
+
+    if (mediaObject.formats.small) mediaObject.formats.small.url = createLinkToDocumentOnToApi(mediaObject.formats.small.url);
+
+    if (mediaObject.formats.large) mediaObject.formats.large.url = createLinkToDocumentOnToApi(mediaObject.formats.large.url);
   }
+
 
   return {
     name: mediaObject.name,
