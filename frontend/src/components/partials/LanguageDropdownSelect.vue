@@ -1,5 +1,6 @@
 <template>
   <Dropdown
+    data-test-id="Language-select"
     v-model="selectedLanguage"
     :options="languages"
     optionLabel="name"

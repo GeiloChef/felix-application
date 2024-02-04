@@ -1,6 +1,7 @@
 <template>
   <Dialog
     id="cookie-dialog"
+    data-test-id="CookieDialog-dialog"
     class="select-none"
     v-model:visible="showCookieDialog"
     modal
@@ -28,6 +29,7 @@
         <router-link
           :to="{ name: 'privacy-policy' }">
           <Button
+            data-test-id="GoToPrivacyPolicy-button"
             class="mb-6 !max-h-full !justify-end"
             :label="$t('go-to-privacy-policy')"
             :iconPosition="ButtonIconPosition.Left"
@@ -36,6 +38,7 @@
         </router-link>
         <div class="flex justify-end">
           <Button
+            data-test-id="AcceptCookies-button"
             class="!justify-end"
             icon="fa-file-circle-check"
             :label="$t('i-confirm-above-mentioned')"

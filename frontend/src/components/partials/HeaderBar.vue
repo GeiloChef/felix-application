@@ -4,7 +4,7 @@
       <div class="flex align-items-center gap-0 sm:gap-2 select-none">
         <Avatar
           class="hidden sm:block"
-          image="https://t3.ftcdn.net/jpg/02/43/12/34/240_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+          :image="''"
           shape="circle"
           size="large"/>
         <div class="flex items-center font-bold ml-0 sm:ml-2 gap-0 sm:gap-2">
