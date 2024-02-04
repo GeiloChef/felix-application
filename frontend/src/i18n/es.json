@@ -67,17 +67,17 @@
   },
   "numbers": {
     "zero": "cero",
-    "uno": "uno",
-    "dos": "dos",
-    "tres": "tres",
-    "cuatro": "cuatro",
-    "cinco": "cinco",
-    "seis": "seis",
-    "siete": "siete",
-    "ocho": "ocho",
-    "nueve": "nueve",
-    "diez": "diez",
-    "once": "once",
-    "doce": "doce"
+    "one": "uno",
+    "two": "dos",
+    "three": "tres",
+    "four": "cuatro",
+    "five": "cinco",
+    "six": "seis",
+    "seven": "siete",
+    "eight": "ocho",
+    "nine": "nueve",
+    "ten": "diez",
+    "eleven": "once",
+    "twelve": "doce"
   }
 }
