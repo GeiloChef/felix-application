@@ -9,7 +9,7 @@
 <script setup lang="ts">
 
   import ColoredBackgroundCard from '@/components/partials/ColoredBackgroundCard.vue';
-  import ReferencesSlider from '@/components/partials/ReferencesSlider.vue';
+  import ReferencesSlider from '@/components/partials/ReferencesCarousel.vue';
   import { ColoredBackgroundCardTypes } from '@/models/core';
 </script>
 
