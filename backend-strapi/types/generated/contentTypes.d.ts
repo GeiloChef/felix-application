@@ -919,7 +919,7 @@ export interface ApiLegalInformationLegalInformation extends Schema.SingleType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -943,6 +943,7 @@ export interface ApiLegalInformationLegalInformation extends Schema.SingleType {
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::legal-information.legal-information',
       'oneToOne',
