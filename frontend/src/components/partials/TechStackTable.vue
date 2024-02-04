@@ -10,6 +10,7 @@
         :value="techStack"
         size="small"
         :paginator="techStack.length > maxEntriesPerPage"
+        paginatorTemplate="PrevPageLink CurrentPageReport NextPageLink"
         :rows="maxEntriesPerPage">
         <Column
           field="name"
@@ -46,7 +47,7 @@
           <template #body="slotProps">
             <Rating
               v-model="slotProps.data.skillRating"
-              :stars="6"
+              :stars="5"
               readonly
               :cancel="false"/>
           </template>
