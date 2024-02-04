@@ -1,4 +1,5 @@
 import { type RemovableRef, useLocalStorage } from '@vueuse/core';
+import _ from 'lodash';
 import { defineStore } from 'pinia';
 import { computed, ref, type Ref } from 'vue';
 
@@ -37,7 +38,7 @@ export const useDataStore = defineStore('dataStore', () => {
 
   const getMilestonesFromService = async () => {
     fetchMilestones().then((data: Milestone[]) => {
-      milestones.value = data;
+      milestones.value = _.orderBy(data, ['startDate', 'endDate'], ['asc', 'desc']);
     });
   };
 

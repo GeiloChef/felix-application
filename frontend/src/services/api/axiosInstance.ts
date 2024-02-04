@@ -13,8 +13,10 @@ instance.defaults.params = {
     'populate': '*'
 };
 
+const authorizationBearer = localStorage.getItem('jwt') ?? '';
+
 instance.defaults.headers.common = {
-    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    'Authorization': `Bearer ${authorizationBearer}`
 };
 
 export default instance;

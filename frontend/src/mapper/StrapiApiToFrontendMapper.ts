@@ -122,7 +122,7 @@ export const mapMilestonesToFrontendObject = (milestonesFromStrapi:  DataObject<
       title: milestoneFromStrapi.attributes.title,
       description: milestoneFromStrapi.attributes.description,
       startDate: moment(milestoneFromStrapi.attributes.startDate),
-      endDate: moment(milestoneFromStrapi.attributes.endDate),
+      endDate: milestoneFromStrapi.attributes.endDate ? moment(milestoneFromStrapi.attributes.endDate) : null,
       locale: milestoneFromStrapi.attributes.locale,
       type: milestoneFromStrapi.attributes.type,
       files: [...mappedPublicFiles, ...mappedPrivateFiles]

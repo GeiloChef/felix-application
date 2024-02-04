@@ -65,7 +65,7 @@ export interface Milestone {
   title: string,
   description: string,
   startDate: Moment,
-  endDate: Moment,
+  endDate: Moment | null,
   locale: string,
   type: MilestoneType,
   files: FileObject[]

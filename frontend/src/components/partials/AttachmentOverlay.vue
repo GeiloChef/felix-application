@@ -23,10 +23,10 @@
             v-for="(attachment, index) in currentViewedAttachments"
             :key="index"
             class="col-12 mt-6">
-            <div class="flex justify-between">
+            <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
               <div class="flex flex-row items-center gap-2">
                 <span
-                  class="max-w-64 truncate"
+                  class="max-w-72 md:max-w-64 truncate"
                   :class="{ 'text-gray-400': isPrivateFileLocked(attachment) }">
                   {{ attachment.name.capitalizeFirstLetter() }}
                 </span>
@@ -48,9 +48,9 @@
                   ({{ $t('private') }})
                 </span>
               </div>
-              <div class="flex flex-row gap-4">
+              <div class="flex flex-row gap-4 justify-end">
                 <Button
-                  class="max-h-8 hidden md:flex"
+                  class="max-h-8 flex"
                   size="small"
                   icon="eye"
                   severity="secondary"
@@ -59,31 +59,16 @@
                   :label="t('preview').capitalizeFirstLetter()"
                   @click="triggerPreviewOfAttachment(attachment)" />
                 <Button
-                  class="max-h-8 hidden md:flex"
+                  class="max-h-8 flex"
                   size="small"
                   icon="file-download"
                   severity="success"
                   :disabled="isPrivateFileLocked(attachment)"
                   :label="t('download').capitalizeFirstLetter()"
                   @click="triggerDownloadOfAttachment(attachment)" />
-                <!--  Buttons for small devices with only icons  -->
-                <Button
-                  class="max-h-8 flex md:hidden"
-                  size="small"
-                  icon="eye"
-                  severity="secondary"
-                  outlined
-                  :disabled="isPrivateFileLocked(attachment)"
-                  @click="triggerPreviewOfAttachment(attachment)" />
-                <Button
-                  class="max-h-8 flex md:hidden"
-                  size="small"
-                  icon="file-download"
-                  severity="success"
-                  :disabled="isPrivateFileLocked(attachment)"
-                  @click="triggerDownloadOfAttachment(attachment)" />
               </div>
             </div>
+            <Divider/>
           </div>
         </template>
       </DataView>

@@ -10,7 +10,8 @@
     <div
       class="w-full overflow-hidden"
       :class="[
-        { 'px-4 py-6 md:px-32 md:py-12 lg:px-40 lg:py-16  xl:px-64 xl:py-24': !noMargin },
+        { 'py-6 md:py-12 lg:py-16  xl:py-24': !noHorizontalMargin },
+        { 'px-4 md:px-32 lg:px-40  xl:px-64 ': !noVerticalMargin },
         { 'full-screen-card': fullScreenCard },
         cardColorClass
       ]">
@@ -46,7 +47,11 @@
       type: String,
       default: ''
     },
-    noMargin: {
+    noHorizontalMargin: {
+      type: Boolean,
+      default: false
+    },
+    noVerticalMargin: {
       type: Boolean,
       default: false
     },

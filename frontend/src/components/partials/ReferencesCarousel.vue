@@ -2,7 +2,10 @@
   <div>
     <div class="flex justify-center">
       <Carousel
-        class="w-full lg:w-5/6 2xl:w-2/3"
+        ref="ReferenceCarousel"
+        class="w-full lg:w-5/6 2xl:w-2/3 max-w-full"
+        orientation="horizontal"
+        circular
         :value="references"
         :numVisible="1"
         :numScroll="1">
@@ -30,6 +33,7 @@
               <div class="flex flex-col md:flex-row gap-4 justify-end">
                 <Button
                   v-for="link in slotProps.data.externalLinks"
+                  class="!max-h-full"
                   :key="link.name"
                   :label="link.name"
                   icon="fa-link"
@@ -57,7 +61,7 @@
   import { storeToRefs } from 'pinia';
   import Carousel from 'primevue/carousel';
   import Tag from 'primevue/tag';
-  import { computed, ref, type Ref } from 'vue';
+  import { computed, onMounted, ref, type Ref } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   import AttachmentOverlay from '@/components/partials/AttachmentOverlay.vue';
@@ -74,6 +78,7 @@
   const attachmentOverlayStore = useAttachmentOverlayStore();
 
   const AttachmentOverlayRef: Ref<typeof AttachmentOverlay | null> = ref(null);
+  const ReferenceCarousel: Ref<typeof Carousel | null> = ref(null);
 
   const openAttachmentOverlay = (event: PointerEvent | MouseEvent, attachments: MediaObject[]) => {
     if (AttachmentOverlayRef.value) {
@@ -94,6 +99,10 @@
     }
   };
 
+  /**
+   * This enables the vertical scroll on phones so the user is still able to scroll up and down while on the carousel
+   */
+  Carousel.methods.onTouchMove = (): void => undefined;
 </script>
 
 <style lang="scss">
