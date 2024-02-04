@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "export-no-enc": "npm run strapi export -- --file ./exports/exported-data --no-encrypt",
+    "export-no-enc": "npm run strapi export -- --file ./exports/ --no-encrypt",
     "import-no-enc": "npm run strapi import -- --file exports/exported-data-3.tar.gz"
   },
   "dependencies": {

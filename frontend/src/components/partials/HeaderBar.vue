@@ -51,7 +51,7 @@
     <template #end>
       <div class="flex align-items-center gap-2">
         <Button
-          v-if="userHasAcceptedCookies"
+          v-if="userHasAcceptedCookies && featureToggleStore.isFeatureActive(AvailableFeatures.DigitalTour)"
           :label="$t('start-a-tour')"
           size="small" />
 
@@ -143,11 +143,9 @@
   import Avatar from 'primevue/avatar';
   import Button from 'primevue/button';
   import Divider from 'primevue/divider';
-  import Dropdown, { type DropdownChangeEvent } from 'primevue/dropdown';
   import Menubar from 'primevue/menubar';
   import OverlayPanel from 'primevue/overlaypanel';
   import { computed, type Ref, ref } from 'vue';
-  import { useI18n } from 'vue-i18n';
   import { useRouter } from 'vue-router';
 
   import ButtonWithIcon from '@/components/elements/ButtonWithIcon.vue';

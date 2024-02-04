@@ -63,7 +63,8 @@ export enum ButtonIconPosition {
 }
 
 export enum AvailableFeatures {
-  Internationalization = 'internationalization'
+  Internationalization = 'internationalization',
+  DigitalTour = 'digital-tour'
 }
 
 export enum ToastMessageTypes {
