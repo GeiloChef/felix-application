@@ -3,7 +3,8 @@
     v-show="personalInformation"
     :color-type="ColoredBackgroundCardTypes.Bright"
     hide-triangle
-    no-margin>
+    no-horizontal-margin
+    no-vertical-margin>
     <div class="md-personal-information-card-parent flex flex-col lg:flex-row gap-8 justify-content items-center overflow-hidden relative xl:pb-0">
       <div class="lg:w-full xl:w-1/2">
         <div class="md-profile-image-parent overflow-hidden">
@@ -19,9 +20,9 @@
           :src="personalInformation.image.formats!.large.url"
           :alt="personalInformation.image.alternativeText">
       </div>
-      <div class="w-2/3 lg:w-full xl:w-1/2 h-full flex items-center justify-center mb-16 lg:mb-0">
+      <div class="w-5/6 lg:w-full xl:w-1/2 h-full flex items-center justify-center mb-16 lg:mb-0">
         <div>
-          <div class="text-4xl text-center pr-10">
+          <div class="text-xl lg:text-4xl text-center pr-0 lg:pr-10">
             {{ introductionText }}
           </div>
           <!--    Chips for all breakpoints besides the md-breakpoint of tailwind - md-breakpoint is handled above    -->

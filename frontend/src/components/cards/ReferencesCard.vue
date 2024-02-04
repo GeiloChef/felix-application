@@ -1,8 +1,9 @@
 <template>
   <ColoredBackgroundCard
+    no-vertical-margin
     :title="$t('my-references')"
     :color-type="ColoredBackgroundCardTypes.Dark">
-    <ReferencesSlider class="mt-12" />
+    <ReferencesSlider class="mt-12"/>
   </ColoredBackgroundCard>
 </template>
 
