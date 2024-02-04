@@ -20,7 +20,7 @@
   import { storeToRefs } from 'pinia';
   import Toast, { type ToastMessageOptions } from 'primevue/toast';
   import { useToast } from 'primevue/usetoast';
-  import { computed, onMounted, watch } from 'vue';
+  import { computed, onBeforeMount, onMounted, watch } from 'vue';
   import { RouterView, useRoute } from 'vue-router';
 
   import CookiesDialog from '@/components/partials/CookiesDialog.vue';
@@ -54,9 +54,12 @@
     return route.name !== 'login';
   });
 
-  onMounted(async (): Promise<void> => {
+  onBeforeMount(async (): Promise<void> => {
     await featureToggleStore.getFeatureTogglesFromService();
     await languageStore.getLanguagesFromService();
+  });
+
+  onMounted(async (): Promise<void> => {
     await dataStore.getLegalInformationFromService();
 
     // asynchronously fetch all data needed for the home view
