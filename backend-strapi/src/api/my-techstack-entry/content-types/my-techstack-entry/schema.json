@@ -34,7 +34,7 @@
     "skillRating": {
       "pluginOptions": {},
       "type": "integer",
-      "max": 6,
+      "max": 5,
       "min": 1
     },
     "image": {

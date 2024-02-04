@@ -1099,7 +1099,7 @@ export interface ApiMyTechstackEntryMyTechstackEntry
     skillRating: Attribute.Integer &
       Attribute.SetMinMax<{
         min: 1;
-        max: 6;
+        max: 5;
       }>;
     image: Attribute.Media;
     createdAt: Attribute.DateTime;
