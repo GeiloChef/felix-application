@@ -3,8 +3,9 @@
     <div class="flex justify-center">
       <Carousel
         ref="ReferenceCarousel"
-        class="w-full lg:w-5/6 2xl:w-2/3"
+        class="w-full lg:w-5/6 2xl:w-2/3 max-w-full"
         orientation="horizontal"
+        circular
         :value="references"
         :numVisible="1"
         :numScroll="1">
