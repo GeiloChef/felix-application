@@ -17,7 +17,7 @@
             {{ slotProps.item.title }}
           </template>
           <template #subtitle>
-            {{ formatDateForUi(slotProps.item.startDate, DateFormats.MonthYear) }}
+            {{ getTimelineSubHeadline(slotProps.item) }}
           </template>
           <template #content>
             <p>
@@ -52,7 +52,7 @@
 
   import AttachmentOverlay from '@/components/partials/AttachmentOverlay.vue';
   import { DateFormats } from '@/models/core';
-  import { type MediaObject, MilestoneType } from '@/models/ui-models';
+  import { type MediaObject, type Milestone, MilestoneType } from '@/models/ui-models';
   import { useAttachmentOverlayStore } from '@/stores/attachmentOverlayStore';
   import { useDataStore } from '@/stores/dataStore';
   import { formatDateForUi } from '@/utils/dateUtils';
@@ -98,6 +98,25 @@
     } else {
       timelineAlignment.value = 'alternate';
     }
+  };
+
+  const getTimelineSubHeadline = (milestone: Milestone): string => {
+    let subHeadline: string = '';
+
+    if (milestone.startDate) {
+      subHeadline += formatDateForUi(milestone.startDate, DateFormats.MonthYear);
+    }
+
+
+    if (milestone.endDate) {
+      if (milestone.startDate) {
+        subHeadline += ' - ';
+      }
+
+      subHeadline += formatDateForUi(milestone.endDate, DateFormats.MonthYear);
+    }
+
+    return subHeadline;
   };
 
   onMounted((): void => {
