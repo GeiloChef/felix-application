@@ -12,6 +12,14 @@
     :breakpoints="{
       '1199px': '75vw',
       '640px': '95vw' }">
+    <template #header>
+      <div class="flex flex-col md:flex-row-reverse gap-4 justify-between w-full items-start md:items-end">
+        <div class="w-full md:w-auto">
+          <LanguageDropdownSelect />
+        </div>
+        <span class="text-xl font-bold">{{ $t('before-you-enter-the-site') }}</span>
+      </div>
+    </template>
     <p class="m-0">
       {{ $t('please-confirm-that-you-have-read-the-privacy-policy') }}
     </p>
@@ -53,6 +61,7 @@
   import { computed } from 'vue';
   import { useRoute } from 'vue-router';
 
+  import LanguageDropdownSelect from '@/components/partials/LanguageDropdownSelect.vue';
   import { ButtonIconPosition } from '@/models/core';
 
   const showCookieDialog = computed((): boolean => {
