@@ -156,6 +156,7 @@ module.exports = {
     '**/locale/*',
     '**/misc/*',
     '**/node_modules/*',
+    '**/cypress/*',
     '**/patches/*',
     '**/public/*',
     '**/src/assets/*',
