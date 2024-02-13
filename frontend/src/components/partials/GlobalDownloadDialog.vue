@@ -52,40 +52,43 @@
         </span>
       </template>
       <template #list="fileDownloadsProps">
-        <div
-          v-for="(fileDownload, index) in fileDownloadsProps.items"
-          :key="index"
-          class="col-12">
-          <div class="flex flex-row gap-4 w-full justify-between items-end px-6">
-            <div class="flex flex-col gap-4">
-              <div class="flex flex-row w-full">
-                <div class="flex flex-col">
-                  <div class="text-2xl font-bold">
-                    {{ fileDownload.headline }}
-                  </div>
-                  <div class="text-md text-gray-400">
-                    {{ fileDownload.subHeadline }}
+        <div class="pb-16">
+          <div
+            v-for="(fileDownload, index) in fileDownloadsProps.items"
+            :key="index"
+            class="col-12">
+            <div class="flex flex-col xl:flex-row gap-4 w-full justify-between items-end px-6">
+              <div class="flex flex-col gap-4 self-baseline">
+                <div class="flex flex-row w-full">
+                  <div class="flex flex-col">
+                    <div class="text-2xl font-bold">
+                      {{ fileDownload.headline }}
+                    </div>
+                    <div class="text-md text-gray-400">
+                      {{ fileDownload.subHeadline }}
+                    </div>
                   </div>
                 </div>
+                <div class="block xl:flex xl:flex-row gap-2">
+                  <Tag
+                    class="mr-2 mb-2 xl:mb-0 xl:mr-0"
+                    v-for="tag in fileDownload.tags"
+                    :key="tag.label"
+                    severity="success"
+                    :value="tag.value"></Tag>
+                </div>
               </div>
-              <div class="flex flex-row gap-2">
-                <Tag
-                  v-for="tag in fileDownload.tags"
-                  :key="tag.label"
-                  severity="success"
-                  :value="tag.value"></Tag>
+              <div class="flex flex-row">
+                <Button
+                  @click="openAttachmentOverlay($event, fileDownload.files)"
+                  :label="$t('attachment-with-number', fileDownload.files.length, { count: fileDownload.files.length }).capitalizeFirstLetter()"
+                  icon="fa-paperclip"
+                  size="small">
+                </Button>
               </div>
             </div>
-            <div class="flex flex-row">
-              <Button
-                @click="openAttachmentOverlay($event, fileDownload.files)"
-                :label="$t('attachment-with-number', fileDownload.files.length, { count: fileDownload.files.length }).capitalizeFirstLetter()"
-                icon="fa-paperclip"
-                size="small">
-              </Button>
-            </div>
+            <Divider v-if="index !== fileDownloadsProps.items.length - 1" />
           </div>
-          <Divider />
         </div>
       </template>
     </DataView>
@@ -135,6 +138,7 @@
   const filteredDocuments = computed((): FileDownload[] => {
     if (!searchText.value) return fileDownloads.value;
 
+    // todo: regex to only filter for a-z
     return fileDownloads.value.filter((file) => {
       return (file.headline.toLowerCase().includes(searchText.value.toLowerCase()))
         || (file.subHeadline.toLowerCase().includes(searchText.value.toLowerCase()))
@@ -152,6 +156,7 @@
 }
 */
 
+/* todo: Fix the scroll height of the downloads */
 .downloads-data-view-body {
   .p-dataview-content {
     max-height: 70vh;

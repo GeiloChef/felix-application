@@ -89,7 +89,6 @@
 
     // asynchronously fetch all data needed for the home view
     dataStore.fetchAllInformationForHomeView();
-    fileDownloadStore.getFileDownloadsFromService();
   });
 
   watch(toastMessages, async (newToastMessages: ToastMessageOptions[]) => {
