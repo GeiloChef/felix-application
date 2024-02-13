@@ -910,6 +910,151 @@ export interface ApiFeatureToggleFeatureToggle extends Schema.CollectionType {
   };
 }
 
+export interface ApiFileDownloadFileDownload extends Schema.CollectionType {
+  collectionName: 'file_downloads';
+  info: {
+    singularName: 'file-download';
+    pluralName: 'file-downloads';
+    displayName: 'File Downloads';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    headline: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    subHeadline: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    filesPrivates: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToMany',
+      'api::private-file.private-file'
+    >;
+    filesPublics: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToMany',
+      'api::public-file.public-file'
+    >;
+    metaTags: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    category: Attribute.Enumeration<
+      ['SCHOOL_EDUCATION', 'JOB_EXPERIENCE', 'FURTHER_EDUCATION_CODING']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tags: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToMany',
+      'api::file-tag.file-tag'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::file-download.file-download',
+      'oneToMany',
+      'api::file-download.file-download'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiFileTagFileTag extends Schema.CollectionType {
+  collectionName: 'file_tags';
+  info: {
+    singularName: 'file-tag';
+    pluralName: 'file-tags';
+    displayName: 'File Tag';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    value: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::file-tag.file-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::file-tag.file-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::file-tag.file-tag',
+      'oneToMany',
+      'api::file-tag.file-tag'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiLegalInformationLegalInformation extends Schema.SingleType {
   collectionName: 'legal_informations';
   info: {
@@ -1516,6 +1661,8 @@ declare module '@strapi/types' {
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::external-link.external-link': ApiExternalLinkExternalLink;
       'api::feature-toggle.feature-toggle': ApiFeatureToggleFeatureToggle;
+      'api::file-download.file-download': ApiFileDownloadFileDownload;
+      'api::file-tag.file-tag': ApiFileTagFileTag;
       'api::legal-information.legal-information': ApiLegalInformationLegalInformation;
       'api::login-credential-request.login-credential-request': ApiLoginCredentialRequestLoginCredentialRequest;
       'api::milestone.milestone': ApiMilestoneMilestone;
