@@ -14,7 +14,8 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: {
-        isAccessibleWithoutAcceptingCookies: false
+        isAccessibleWithoutAcceptingCookies: false,
+        hasDownloadDialogButton: true
       }
     },
     {
@@ -22,7 +23,8 @@ const router = createRouter({
       name: 'login',
       component: LoginView,
       meta: {
-        isAccessibleWithoutAcceptingCookies: false
+        isAccessibleWithoutAcceptingCookies: false,
+        hasDownloadDialogButton: false
       }
     },
     {
@@ -30,7 +32,8 @@ const router = createRouter({
       name: 'imprint',
       component: ImprintView,
       meta: {
-        isAccessibleWithoutAcceptingCookies: true
+        isAccessibleWithoutAcceptingCookies: true,
+        hasDownloadDialogButton: false
       }
     },
     {
@@ -38,7 +41,8 @@ const router = createRouter({
       name: 'privacy-policy',
       component: PrivacyPolicyView,
       meta: {
-        isAccessibleWithoutAcceptingCookies: true
+        isAccessibleWithoutAcceptingCookies: true,
+        hasDownloadDialogButton: false
       }
     },
   ],

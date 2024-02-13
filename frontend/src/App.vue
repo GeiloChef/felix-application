@@ -20,6 +20,7 @@
     <GlobalDownloadDialog />
 
     <Button
+      v-if="showDownloadDialogButton"
       class="h-12 w-12 flex flex-row justify-center fixed bottom-16 right-10"
       size="large"
       severity="success"
@@ -72,6 +73,10 @@
 
   const shouldShouldHeaderBar = computed((): boolean => {
     return route.name !== 'login';
+  });
+
+  const showDownloadDialogButton = computed((): boolean => {
+    return route.meta.hasDownloadDialogButton;
   });
 
   onBeforeMount(async (): Promise<void> => {
