@@ -48,6 +48,7 @@
   "my-tech-stack": "Mein Tech-Stack",
   "name": "Name",
   "network-error": "Netzwerk Fehler",
+  "no-file-found-that-match-your-search-criteria": "Es konnten keine Dateien gefunden werden, die deiner Suche entsprechen.",
   "numbers": {
     "eight": "acht",
     "eleven": "elf",

@@ -24,7 +24,8 @@ import {
   faFileCircleCheck,
   faCircleXmark,
   faSchool,
-  faStar
+  faStar,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -51,5 +52,6 @@ library.add(
   faFileCircleCheck,
   faCircleXmark,
   faSchool,
-  faStar
+  faStar,
+  faXmark
 );

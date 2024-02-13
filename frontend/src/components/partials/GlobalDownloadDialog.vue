@@ -4,6 +4,7 @@
     v-model:visible="isFileDownloadDialogOpen"
     modal
     contentClass="overflow-hidden"
+    position="top"
     :draggable="false"
     :header="$t('here-you-can-find-all-relevant-documents')"
     :style="{ width: '80rem' }"
@@ -16,13 +17,21 @@
     </template>
     <div class="mt-4 mb-10 pl-6 flex flex-row gap-6">
       <div class="flex flex-col">
-        <span class="p-input-icon-left">
+        <span
+          class="p-input-icon-left"
+          :class="{ 'p-input-icon-right': searchInputHasText }">
           <FontAwesomeIcon icon="fa-magnifying-glass" />
           <InputText
             id="username"
             class="w-80 sm:w-96"
+            autocomplete="off"
             v-model="searchText"
             :placeholder="$t('search-for-documents')"/>
+          <FontAwesomeIcon
+            v-if="searchInputHasText"
+            class="cursor-pointer"
+            icon="xmark"
+            @click="clearSearchtextInput" />
         </span>
         <small class="mt-1 ml-1 text-gray-400">{{ $t('search-by-name-or-tag') }}</small>
       </div>
@@ -37,6 +46,11 @@
     <DataView
       class="downloads-data-view-body"
       :value="filteredDocuments">
+      <template #empty>
+        <span class="italic">
+          {{ $t('no-file-found-that-match-your-search-criteria') }}
+        </span>
+      </template>
       <template #list="fileDownloadsProps">
         <div
           v-for="(fileDownload, index) in fileDownloadsProps.items"
@@ -102,6 +116,14 @@
   const AttachmentOverlayRef: Ref<typeof AttachmentOverlay | null> = ref(null);
 
   const searchText = ref('');
+
+  const clearSearchtextInput = (): void => {
+    searchText.value = '';
+  };
+
+  const searchInputHasText = computed((): boolean => {
+    return searchText.value.length > 0;
+  });
 
   const openAttachmentOverlay = (event: PointerEvent | MouseEvent, attachments: MediaObject[]) => {
     if (AttachmentOverlayRef.value) {

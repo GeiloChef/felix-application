@@ -48,6 +48,7 @@
   "my-tech-stack": "Mi pila tecnológica",
   "name": "Nombre",
   "network-error": "Error de red",
+  "no-file-found-that-match-your-search-criteria": "No se han encontrado archivos que coincidan con su búsqueda.",
   "numbers": {
     "eight": "ocho",
     "eleven": "once",
