@@ -4,7 +4,7 @@ import { UnitOfTimeForDifference } from '@/models/core';
 import type {
   DataObject,
   ExternalLinkDto,
-  FeatureTogglesDto, FileDto, LegalInformationDto,
+  FeatureTogglesDto, FileDownloadDto, FileDto, FileTagDto, LegalInformationDto,
   LocaleEntryDto,
   MilestoneStrapiDto,
   PersonalInformationPrivateStrapiDto,
@@ -17,6 +17,8 @@ import type {
 import {
   type ExternalLink,
   type FeatureToggle,
+  type FileDownload,
+  type FileDownloadTag,
   type FileObject,
   HiddenDefaultValue,
   type LegalInformation,
@@ -224,6 +226,73 @@ export const mapReferencesToFrontendObject = (referencesFromStrapi: DataObject<R
   });
 
   return references;
+};
+
+export const mapFileDownloadTagToFrontendObject = (fileDownloadTag: DataObject<FileTagDto>): FileDownloadTag => {
+  return {
+    name: fileDownloadTag.attributes.name,
+    value: fileDownloadTag.attributes.value
+  };
+};
+
+export const mapFileDownloadsToFrontendObject = (fileDownloadsFromStrapi: DataObject<FileDownloadDto>[]): FileDownload[] => {
+  const fileDownloads: FileDownload[] = [];
+
+  fileDownloadsFromStrapi.map((fileDownloadFromStrapi) => {
+    const publicFiles = fileDownloadFromStrapi.attributes.filesPublic ?? null;
+    const mappedPublicFiles: FileObject[] = [];
+
+    if (publicFiles && publicFiles.data) {
+      publicFiles.data.map((publicFile) => {
+        const mappedPublicFile = mapStrapiFileToFrontendObject(publicFile, true);
+
+        mappedPublicFiles.push(mappedPublicFile);
+      });
+    }
+
+    const privateFiles = fileDownloadFromStrapi.attributes.filesPrivates ?? null;
+    const mappedPrivateFiles: FileObject[] = [];
+
+    if (privateFiles && privateFiles.data) {
+      privateFiles.data.map((privateFile) => {
+        const mappedPrivateFile = mapStrapiFileToFrontendObject(privateFile, false);
+
+        mappedPrivateFiles.push(mappedPrivateFile);
+      });
+    }
+
+    const metaTags = fileDownloadFromStrapi.attributes.metaTags ?? null;
+    let mappedMetaTags: string[] = [];
+
+    if (metaTags) {
+      mappedMetaTags = metaTags.split(';');
+    }
+
+    const tags = fileDownloadFromStrapi.attributes.tags ?? null;
+    const mappedTags: FileDownloadTag[] = [];
+
+    if(tags && tags.data) {
+      tags.data.map((tag) => {
+        const mappedTag = mapFileDownloadTagToFrontendObject(tag);
+
+        mappedTags.push(mappedTag);
+      });
+    }
+
+    const mappedFileDownload: FileDownload = {
+      headline: fileDownloadFromStrapi.attributes.headline,
+      subHeadline: fileDownloadFromStrapi.attributes.subHeadline,
+      description: fileDownloadFromStrapi.attributes.description ?? '',
+      category: fileDownloadFromStrapi.attributes.category,
+      files: [...mappedPublicFiles, ...mappedPrivateFiles],
+      metaTags: mappedMetaTags,
+      tags: mappedTags
+    };
+
+    fileDownloads.push(mappedFileDownload);
+  });
+
+  return fileDownloads;
 };
 
 export const mapFeatureTogglesToFrontendObject = (featureTogglesFromStrapi: DataObject<FeatureTogglesDto>[]): FeatureToggle[] => {

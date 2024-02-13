@@ -6,6 +6,7 @@ import type {
   StrapiMediaFormats,
   StrapiMultiMediaApiResponse
 } from '@/models/typesFromStrapiApi';
+import { FileDownloadCategory } from '@/models/typesFromStrapiApi';
 
 export type HiddenForUserPlaceholder = 'Hidden sample text';
 
@@ -93,6 +94,21 @@ export interface Reference {
   type: ReferenceType,
   externalLinks: ExternalLink[],
   files: FileObject[]
+}
+
+export interface FileDownloadTag {
+  name: string;
+  value: string;
+}
+
+export interface FileDownload {
+  headline: string;
+  subHeadline: string;
+  description: string;
+  metaTags: string[];
+  category: FileDownloadCategory;
+  tags: FileDownloadTag[];
+  files: FileObject[];
 }
 
 export interface FeatureToggle {

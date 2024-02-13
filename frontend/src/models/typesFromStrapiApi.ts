@@ -179,3 +179,25 @@ export interface LegalInformationDto {
   imprint: string,
   privacyPolicy: string
 }
+
+export interface FileTagDto extends StrapiData {
+  name: string,
+  value: string,
+}
+
+export enum FileDownloadCategory {
+  SchoolEducation = 'SCHOOL_EDUCATION',
+  JobExperience = 'JOB_EXPERIENCE',
+  FurtherEducation = 'FURTHER_EDUCATION_CODING'
+}
+
+export interface FileDownloadDto {
+  headline: string,
+  subHeadline: string,
+  description: string | null,
+  metaTags: string,
+  category:FileDownloadCategory,
+  filesPrivates: StrapiMultiMediaApiResponse<FileDto>,
+  filesPublic: StrapiMultiMediaApiResponse<FileDto>,
+  tags: StrapiMultiMediaApiResponse<FileTagDto>
+}
