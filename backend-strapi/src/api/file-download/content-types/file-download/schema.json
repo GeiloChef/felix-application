@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "file_downloads",
+  "info": {
+    "singularName": "file-download",
+    "pluralName": "file-downloads",
+    "displayName": "File Downloads",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "headline": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "subHeadline": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": false
+    },
+    "filesPrivates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::private-file.private-file"
+    },
+    "filesPublics": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::public-file.public-file"
+    },
+    "metaTags": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "category": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "SCHOOL_EDUCATION",
+        "JOB_EXPERIENCE",
+        "FURTHER_EDUCATION_CODING"
+      ]
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::file-tag.file-tag"
+    }
+  }
+}
