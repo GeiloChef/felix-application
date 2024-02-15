@@ -94,3 +94,10 @@ html {
 
 
 /* End of custom scrollbar */
+
+@supports (-webkit-hyphens:none) {
+    .p-divider.p-divider-horizontal {
+        margin: 1.25rem 0;
+        height: 1.25rem!important;
+    }
+}
