@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLoc
 
 import { useUserInfoStore } from '@/stores/userInfoStore';
 import HomeView from '@/views/HomeView.vue';
+import HomeViewSnapScroll from '@/views/HomeViewSnapScroll.vue';
 import ImprintView from '@/views/ImprintView.vue';
 import LoginView  from '@/views/LoginView.vue';
 import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue';
@@ -25,6 +26,15 @@ const router = createRouter({
       meta: {
         isAccessibleWithoutAcceptingCookies: false,
         hasDownloadDialogButton: false
+      }
+    },
+    {
+      path: '/home/snap-scroll',
+      name: 'home-snap-scroll',
+      component: HomeViewSnapScroll,
+      meta: {
+        isAccessibleWithoutAcceptingCookies: false,
+        hasDownloadDialogButton: true
       }
     },
     {
