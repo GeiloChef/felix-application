@@ -28,7 +28,7 @@
           <!--    Chips for all breakpoints besides the md-breakpoint of tailwind - md-breakpoint is handled above    -->
           <div class="mt-24 gap-8 hidden xl:flex flex-col xl:flex-row justify-center items-center">
             <Chip
-              v-for="chip in chips"
+              v-for="chip in chipsForPersonalInformation"
               class="pl-0 pr-3 bg-gray-900 rounded-full">
               <span class="bg-white rounded-full w-10 h-10 flex items-center justify-center">
                 <FontAwesomeIcon
@@ -76,15 +76,7 @@
   const { t } = useI18n();
 
   const dataStore = useDataStore();
-  const { personalInformation } = storeToRefs(dataStore);
-
-  const ageChipText = computed((): string => {
-    return t('years-old', personalInformation.value.age, { count: personalInformation.value.age });
-  });
-
-  const professionalExperienceChipText = computed((): string => {
-    return t('professional-experience', personalInformation.value.professionalExperienceYears, { count: personalInformation.value.professionalExperienceYears });
-  });
+  const { personalInformation, chipsForPersonalInformation } = storeToRefs(dataStore);
 
   const introductionText = computed((): string => {
     const ageMarker = '__age__';
@@ -100,32 +92,6 @@
     }
 
     return '';
-  });
-
-  interface ChipInformation {
-    icon: string,
-    text: string
-  }
-
-  const chips = computed((): ChipInformation[] => {
-    return [
-      {
-        icon: 'fa-calendar-days',
-        text: ageChipText.value
-      },
-      {
-        icon: 'fa-laptop-code',
-        text: professionalExperienceChipText.value
-      },
-      {
-        icon: 'fa-brands fa-vuejs',
-        text: personalInformation.value.currentJob ?? '',
-      },
-      /*      {
-        icon: 'fa-business-time',
-        text: personalInformation.value.currentEmployer ?? '',
-      },*/
-    ];
   });
 </script>
 

@@ -2,6 +2,7 @@ import { type RemovableRef, useLocalStorage } from '@vueuse/core';
 import _ from 'lodash';
 import { defineStore } from 'pinia';
 import { computed, ref, type Ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import type {
   LegalInformation,
@@ -15,12 +16,15 @@ import { fetchMilestones } from '@/services/MilestoneService';
 import { fetchPersonalInformation } from '@/services/PersonalInformationService';
 import { fetchReferences } from '@/services/ReferenceService';
 import { fetchTechStack } from '@/services/TechStackService';
+import { getTranslatedNumber } from '@/utils/formatUtils';
 
 /**
  * @description Stores all the data that is coming from the strapi backend that will NOT be changed
  * it mainly just there to access data in every component
  */
 export const useDataStore = defineStore('dataStore', () => {
+  const { t } = useI18n();
+
   const personalInformation: Ref<PersonalInformation> = ref({} as PersonalInformation);
   const milestones: Ref<Milestone[]> = ref([]);
   const techStack: Ref<TechStackEntry[]> = ref([]);
@@ -62,6 +66,40 @@ export const useDataStore = defineStore('dataStore', () => {
     });
   };
 
+  const ageChipText = computed((): string => {
+    return t('years-old', personalInformation.value.age, { count: personalInformation.value.age });
+  });
+
+  const professionalExperienceChipText = computed((): string => {
+    return t('professional-experience', personalInformation.value.professionalExperienceYears, { count: personalInformation.value.professionalExperienceYears });
+  });
+
+  const currentJobChipText = computed((): string => {
+    return personalInformation.value.currentJob ?? '';
+  });
+
+  interface ChipInformation {
+    icon: string,
+    text: string
+  }
+
+  const chipsForPersonalInformation = computed((): ChipInformation[] => {
+    return [
+      {
+        icon: 'fa-calendar-days',
+        text: ageChipText.value
+      },
+      {
+        icon: 'fa-laptop-code',
+        text: professionalExperienceChipText.value
+      },
+      {
+        icon: 'fa-brands fa-vuejs',
+        text: currentJobChipText.value,
+      },
+    ];
+  });
+
   const fetchAllInformationForHomeView = async () => {
     getPersonalInformationFromService();
     getMilestonesFromService();
@@ -76,6 +114,7 @@ export const useDataStore = defineStore('dataStore', () => {
     references,
     fullName,
     legalInformation,
+    chipsForPersonalInformation,
     fetchAllInformationForHomeView,
     getLegalInformationFromService
   };
