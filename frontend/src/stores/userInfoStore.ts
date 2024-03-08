@@ -1,17 +1,27 @@
-import { useLocalStorage } from '@vueuse/core';
-import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { type RemovableRef, useLocalStorage } from '@vueuse/core';
+import { defineStore, storeToRefs } from 'pinia';
+import { computed, type Ref, ref, watch } from 'vue';
 
+import type { UserApplicationSettings } from '@/models/core';
+import { AvailableFeatures } from '@/models/core';
 import type { UserData } from '@/models/ui-models';
 import router from '@/router';
 import { postLogin } from '@/services/AuthenticationService';
+import { useFeatureToggleStore } from '@/stores/featureToggleStore';
 
 export const useUserInfoStore = defineStore('userInformation', () => {
+  const featureToggleStore = useFeatureToggleStore();
+  const { featureToggles } = storeToRefs(featureToggleStore);
+
   const userInfo = useLocalStorage('userInfo', {} as UserData);
   const jwt = useLocalStorage('jwt', '' as string);
   const userHasAcceptedCookies = useLocalStorage('userHasAcceptedCookies', false);
   const userHasAcceptedGuestInformation = useLocalStorage('userHasAcceptedGuestInformation', false);
   const guestInfoModalIsToggled = ref(false);
+
+  const userSelectedSettings: RemovableRef<UserApplicationSettings> =  useLocalStorage('userSelectedSettings',{
+    useSnapScrollHomeView: false
+  });
 
   const isUserLoggedIn = computed((): boolean => {
     return !!jwt.value;
@@ -51,12 +61,20 @@ export const useUserInfoStore = defineStore('userInformation', () => {
     router.push({ name: 'login' });
   };
 
+  watch(featureToggles, (): void => {
+    if(!featureToggleStore.isFeatureActive(AvailableFeatures.SnapScrollHomeView)) {
+      userSelectedSettings.value.useSnapScrollHomeView = false;
+    }
+  });
+
+
   return {
     userInfo,
     isUserLoggedIn,
     userHasAcceptedCookies,
     userHasAcceptedGuestInformation,
     guestInfoModalIsToggled,
+    userSelectedSettings,
     processLogin,
     processLogout,
     acceptCookies,
