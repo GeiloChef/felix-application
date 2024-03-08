@@ -64,7 +64,8 @@ export enum ButtonIconPosition {
 
 export enum AvailableFeatures {
   Internationalization = 'internationalization',
-  DigitalTour = 'digital-tour'
+  DigitalTour = 'digital-tour',
+  SnapScrollHomeView = 'snap-scroll-home-view'
 }
 
 export enum ToastMessageTypes {
@@ -84,4 +85,8 @@ export interface ToastMessage {
 export interface UserLoginCredentials {
   identifier: string,
   password: string
+}
+
+export interface UserApplicationSettings {
+  useSnapScrollHomeView: boolean
 }
