@@ -1,0 +1,17 @@
+.snap-scroll-horizontal-parent {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.snap-scroll-horizontal-children {
+    scroll-snap-align: start;
+}
+
+.horizontal-snap-scroll-stepper {
+    opacity: 0.2;
+    @apply bg-blue-100 h-1 min-w-8 rounded-full transition-all duration-200
+}
+
+.horizontal-snap-scroll-stepper-active {
+    opacity: 0.4 !important;
+}
