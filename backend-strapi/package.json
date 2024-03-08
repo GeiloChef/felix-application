@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "export-no-enc": "npm run strapi export -- --file ./exports/ --no-encrypt",
-    "import-no-enc": "npm run strapi import -- --file exports/exported-data-3.tar.gz"
+    "import-no-enc": "npm run strapi import -- --file exports/import.tar.gz.enc"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.17.1",
