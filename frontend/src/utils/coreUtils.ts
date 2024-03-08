@@ -26,3 +26,19 @@ export const logError = (error: any): void => {
     console.error(error);
   }
 };
+
+/**
+ * splits a given array in multiple arrays of the size 'size'
+ * @param array {Array}
+ * @param size {number}
+ * @return arrays of type array
+ */
+export const chunkArray= <T>(array: T[], size: number): T[][] => {
+  const chunkedArray: T[][] = [];
+
+  for (let i = 0; i < array.length; i += size) {
+    chunkedArray.push(array.slice(i, i + size));
+  }
+
+  return chunkedArray;
+};
