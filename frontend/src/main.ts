@@ -1,4 +1,5 @@
 import './assets/main.css';
+import './assets/snapScroll.css';
 import 'primevue/resources/themes/lara-dark-blue/theme.css';
 import '@/utils/jsPrototypeExtension';
 
