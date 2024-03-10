@@ -19,6 +19,7 @@
     <template #footer>
       <div class="flex flex-col sm:flex-row gap-8 sm:gap-0 justify-end mt-8">
         <Button
+          v-if="false"
           class="!justify-end"
           :label="$t('request-credentials')"
           severity="secondary"
