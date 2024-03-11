@@ -1,7 +1,7 @@
 import './assets/main.css';
-import './assets/snapScroll.css';
 import 'primevue/resources/themes/lara-dark-blue/theme.css';
 import '@/utils/jsPrototypeExtension';
+import './assets/snapScroll.css';
 
 import 'moment/dist/locale/de';
 import 'moment/dist/locale/es.js';
