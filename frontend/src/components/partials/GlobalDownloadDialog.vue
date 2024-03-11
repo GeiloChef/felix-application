@@ -161,7 +161,7 @@
   .p-dataview-content {
     max-height: 70vh;
     overflow-y: auto;
-    @extend .custom-scrollbar
+    @extend .custom-scrollbar;
   }
 }
 
