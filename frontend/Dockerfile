@@ -2,6 +2,8 @@ FROM node:20-alpine AS builder
 
 COPY package.json .
 
+COPY package-lock.json .
+
 RUN npm install --non-interactive
 
 COPY . .
