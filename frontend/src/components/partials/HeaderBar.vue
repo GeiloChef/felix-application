@@ -3,8 +3,9 @@
     <template #start>
       <div class="flex align-items-center gap-0 sm:gap-2 select-none">
         <Avatar
-          class="hidden sm:block"
-          :image="''"
+          v-if="personalInformation.image"
+          :image="personalInformation.image.formats!.small.url"
+          :alt="personalInformation.image.alternativeText"
           shape="circle"
           size="large"/>
         <div class="flex items-center font-bold ml-0 sm:ml-2 gap-0 sm:gap-2">
@@ -90,7 +91,6 @@
   import Divider from 'primevue/divider';
   import Menubar from 'primevue/menubar';
   import { computed, type Ref, ref } from 'vue';
-  import { useRouter } from 'vue-router';
 
   import SettingsOverlay from '@/components/partials/SettingsOverlay.vue';
   import { AvailableFeatures } from '@/models/core';
@@ -99,8 +99,6 @@
   import { useFileDownloadStore } from '@/stores/fileDownloadStore';
   import { useUserInfoStore } from '@/stores/userInfoStore';
   import { openLinkInNewTab } from '@/utils/coreUtils';
-
-  const router = useRouter();
 
   const featureToggleStore = useFeatureToggleStore();
   const fileDownloadStore = useFileDownloadStore();
