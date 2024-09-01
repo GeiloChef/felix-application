@@ -1,5 +1,4 @@
 import './assets/main.css';
-import 'primevue/resources/themes/lara-dark-blue/theme.css';
 import '@/utils/jsPrototypeExtension';
 import './assets/snapScroll.css';
 
@@ -8,6 +7,7 @@ import 'moment/dist/locale/es.js';
 import 'moment/dist/locale/en-gb.js';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Aura from '@primevue/themes/aura';
 import { createPinia } from 'pinia';
 import Card from 'primevue/card';
 import PrimeVue from 'primevue/config';
@@ -41,7 +41,11 @@ app.directive('tooltip', Tooltip);
 /* add all icon we need to the font-awesome library */
 import '/src/icons/fontAwesomeIconsConfig';
 
-app.use(PrimeVue);
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura
+  }
+});
 app.use(ToastService);
 app.use(i18n);
 app.use(createPinia());

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="relative"
+    class="relative w-full"
     :key="selectedLanguage.strapiLocalCode">
     <div
-      v-if="shouldShouldHeaderBar"
+      v-if="shouldShowHeaderBar"
       ref="HeaderBarRef">
       <HeaderBar />
     </div>
@@ -23,16 +23,18 @@
     <!--  Global Download Dialog  -->
     <GlobalDownloadDialog />
 
-    <Button
-      v-if="showDownloadDialogButton"
-      class="hidden lg:flex flex-row fixed h-12 w-12 justify-center bottom-10 right-10"
-      size="large"
-      severity="success"
-      @click="fileDownloadStore.toggleFileDownloadDialog">
-      <FontAwesomeIcon
-        icon="file-download"
-        class="text-black" />
-    </Button>
+    <div class="fixed bottom-10 w-full flex justify-end">
+      <Button
+        v-if="showDownloadDialogButton"
+        class="hidden fixed h-12 w-12 justify-center bottom-10 right-10"
+        size="large"
+        severity="success"
+        @click="fileDownloadStore.toggleFileDownloadDialog">
+        <FontAwesomeIcon
+          icon="file-download"
+          class="text-black" />
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -81,7 +83,7 @@
   const userInfoStore = useUserInfoStore();
   const { userSelectedSettings } = storeToRefs(userInfoStore);
 
-  const shouldShouldHeaderBar = computed((): boolean => {
+  const shouldShowHeaderBar = computed((): boolean => {
     return route.name !== 'login';
   });
 

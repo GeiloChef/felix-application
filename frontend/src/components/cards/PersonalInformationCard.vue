@@ -29,27 +29,27 @@
           <div class="mt-24 gap-8 hidden xl:flex flex-col xl:flex-row justify-center items-center">
             <Chip
               v-for="chip in chipsForPersonalInformation"
-              class="pl-0 pr-3 bg-gray-900 rounded-full">
-              <span class="bg-white rounded-full w-10 h-10 flex items-center justify-center">
+              class="!pl-0 !pr-3 !bg-gray-900 !rounded-full h-10">
+              <span class="bg-white rounded-full !w-10 !h-10 flex items-center justify-center">
                 <FontAwesomeIcon
                   class="text-gray-900"
                   size="lg"
                   :icon="chip.icon" />
               </span>
-              <span class="ml-2">
+              <span class="ml-2 pr-2">
                 {{ chip.text }}
               </span>
             </Chip>
           </div>
           <div class="flex justify-center items-center mt-12">
-            <Chip class="pl-0 pr-3 bg-gray-900 rounded-full">
-              <span class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+            <Chip class="!pl-0 !pr-3 !bg-gray-900 !rounded-full">
+              <span class="bg-white rounded-full w-12 h-12 !flex !items-center !justify-center">
                 <FontAwesomeIcon
                   class="text-gray-900"
                   size="lg"
                   icon="magnifying-glass" />
               </span>
-              <span class="ml-2">
+              <span class="ml-2 pr-2">
                 {{ personalInformation.lookingFor }}
               </span>
             </Chip>
