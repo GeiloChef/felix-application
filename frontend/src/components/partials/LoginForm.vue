@@ -8,8 +8,10 @@
             <label for="username">
               {{ $t('username') }}
             </label>
-            <span class="p-input-icon-left">
-              <FontAwesomeIcon icon="fa-user" />
+            <IconField>
+              <InputIcon>
+                <FontAwesomeIcon icon="fa-user" />
+              </InputIcon>
               <InputText
                 id="username"
                 class="w-80 sm:w-96"
@@ -18,7 +20,7 @@
                 :placeholder="$t('username')"
                 @input="resetLoginErrorStatus"
                 @keyup.enter.prevent="login" />
-            </span>
+            </IconField>
           </div>
 
           <!--   Password   -->
@@ -68,7 +70,8 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { storeToRefs } from 'pinia';
   import Card from 'primevue/card';
-  import Dialog from 'primevue/dialog';
+  import IconField from 'primevue/iconfield';
+  import InputIcon from 'primevue/inputicon';
   import Password from 'primevue/password';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
