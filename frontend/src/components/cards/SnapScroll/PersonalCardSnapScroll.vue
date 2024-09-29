@@ -19,25 +19,25 @@
           <div class="flex flex-col justify-center text-center text-4xl gap-4 px-4">
             <Chip
               v-for="chip in chipsForPersonalInformation"
-              class="pl-0 pr-3 bg-gray-900 rounded-full border-blue-900 border">
-              <span class="bg-white rounded-full w-10 h-10 flex items-center justify-center">
+              class="pl-0 pr-3 bg-gray-900 rounded-full border-blue-900 border !py-0">
+              <span class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
                 <FontAwesomeIcon
                   class="text-gray-900"
-                  size="lg"
+                  size="xs"
                   :icon="chip.icon" />
               </span>
-              <span class="ml-2">
+              <span class="ml-2 text-base">
                 {{ chip.text }}
               </span>
             </Chip>
-            <Chip class="pl-0 pr-3 bg-blue-900 rounded-full">
-              <span class="bg-white rounded-full w-10 h-10 mr-2 flex items-center justify-center">
+            <Chip class="pl-0 pr-3 bg-blue-900 rounded-full !py-0">
+              <span class="bg-white rounded-full w-12 h-12 mr-2 flex items-center justify-center">
                 <FontAwesomeIcon
                   class="text-gray-900"
-                  size="lg"
+                  size="xs"
                   icon="magnifying-glass" />
               </span>
-              <span class="line-clamp-1 text-left">
+              <span class="line-clamp-1 text-left text-base">
                 {{ personalInformation.lookingFor }}
               </span>
             </Chip>

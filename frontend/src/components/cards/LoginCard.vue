@@ -15,7 +15,7 @@
       v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
       class="flex flex-row justify-center mt-8">
       <SelectButton
-        class="!hidden !sm:block"
+        class="hidden sm:block"
         v-model="selectedLanguage"
         :options="languages"
         optionLabel="name"
@@ -35,7 +35,7 @@
       </SelectButton>
       <LanguageDropdownSelect
         v-if="featureToggleStore.isFeatureActive(AvailableFeatures.Internationalization)"
-        class="!flex !sm:hidden" />
+        class="flex sm:hidden" />
     </div>
 
     <div class="mt-12 flex flex-row justify-center">

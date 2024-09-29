@@ -17,23 +17,27 @@
     </template>
     <div class="mt-4 mb-10 pl-6 flex flex-row gap-6">
       <div class="flex flex-col">
-        <span
-          class="p-input-icon-left"
-          :class="{ 'p-input-icon-right': searchInputHasText }">
-          <FontAwesomeIcon icon="fa-magnifying-glass" />
-          <InputText
-            id="username"
-            class="w-80 sm:w-96"
-            autocomplete="off"
-            v-model="searchText"
-            :placeholder="$t('search-for-documents')"/>
-          <FontAwesomeIcon
-            v-if="searchInputHasText"
-            class="cursor-pointer"
-            icon="xmark"
-            @click="clearSearchtextInput" />
-        </span>
-        <small class="mt-1 ml-1 text-gray-400">{{ $t('search-by-name-or-tag') }}</small>
+        <div class="flex flex-col gap-2">
+          <IconField>
+            <InputIcon>
+              <FontAwesomeIcon icon="fa-magnifying-glass" />
+            </InputIcon>
+            <InputText
+              id="username"
+              class="w-80 sm:w-96"
+              autocomplete="off"
+              v-model="searchText"
+              :placeholder="$t('search-for-documents')" />
+            <InputIcon>
+              <FontAwesomeIcon
+                v-if="searchInputHasText"
+                class="cursor-pointer pr-6"
+                icon="xmark"
+                @click="clearSearchtextInput" />
+            </InputIcon>
+          </IconField>
+          <small class="ml-1 text-gray-400">{{ $t('search-by-name-or-tag') }}</small>
+        </div>
       </div>
       <Button
         v-if="false"
@@ -103,6 +107,8 @@
   import DataView from 'primevue/dataview';
   import Dialog from 'primevue/dialog';
   import Divider from 'primevue/divider';
+  import IconField from 'primevue/iconfield';
+  import InputIcon from 'primevue/inputicon';
   import Tag from 'primevue/tag';
   import { computed, type Ref, ref } from 'vue';
 

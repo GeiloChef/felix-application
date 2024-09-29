@@ -14,17 +14,15 @@
       <template #content="slotProps">
         <Card class="mt-0 mb-8 text-left relative">
           <template #title>
-            <span class="text-2xl">
-              {{ slotProps.item.title }}
-            </span>
+            {{ slotProps.item.title }}
           </template>
           <template #subtitle>
             {{ getTimelineSubHeadline(slotProps.item) }}
           </template>
           <template #content>
-            <span class="text-lg sm:text-xl">
+            <p>
               {{ slotProps.item.description}}
-            </span>
+            </p>
           </template>
           <template #footer>
             <div

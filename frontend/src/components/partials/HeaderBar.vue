@@ -1,7 +1,7 @@
 <template>
   <Menubar class="rounded-none shadow-lg border-b-2 border-b-gray-600">
     <template #start>
-      <div class="flex align-items-center gap-0 sm:gap-2 select-none">
+      <div class="flex align-items-center gap-4 sm:gap-2 select-none">
         <Avatar
           v-if="personalInformation.image"
           :image="personalInformation.image.formats!.small.url"

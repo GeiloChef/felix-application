@@ -43,7 +43,13 @@ import '/src/icons/fontAwesomeIconsConfig';
 
 app.use(PrimeVue, {
   theme: {
-    preset: Aura
+    preset: Aura,
+    options: {
+      cssLayer: {
+        name: 'primevue',
+        order: 'tailwind-base, primevue, tailwind-utilities'
+      }
+    }
   }
 });
 app.use(ToastService);
